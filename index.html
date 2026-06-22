@@ -44,18 +44,42 @@
   .hero-stars2{position:absolute;top:20%;right:8%;font-size:20px;opacity:0.2;animation:twinkle 4s ease-in-out infinite reverse;}
   @keyframes twinkle{0%,100%{opacity:0.1;transform:scale(1);}50%{opacity:0.3;transform:scale(1.2);}}
   .hero-tag{display:inline-flex;align-items:center;gap:8px;background:white;color:var(--purple);font-size:13px;font-weight:700;letter-spacing:.04em;padding:8px 20px;border-radius:99px;border:1.5px solid var(--purple-light);margin-bottom:28px;box-shadow:0 4px 16px rgba(168,129,194,.15);animation:fadeUp .6s ease both;}
-  .hero h1{font-size:clamp(38px,6.5vw,72px);font-weight:900;line-height:1.1;color:var(--dark);margin-bottom:20px;font-family:'Playfair Display',serif;animation:fadeUp .6s .1s ease both;}
+  .hero h1{font-size:clamp(42px,7vw,80px);font-weight:900;line-height:1.05;color:var(--dark);margin-bottom:20px;font-family:'Playfair Display',serif;animation:fadeUp .6s .1s ease both;}
   .hero h1 em{color:var(--purple);font-style:normal;}
-  .hero p{font-size:17px;font-weight:600;color:var(--mid);max-width:540px;line-height:1.75;margin-bottom:48px;animation:fadeUp .6s .2s ease both;}
-  .stage-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:720px;width:100%;animation:fadeUp .6s .3s ease both;}
-  .stage-card{background:white;border:1.5px solid var(--border);border-radius:20px;padding:22px 14px;cursor:pointer;transition:all .2s;text-align:center;box-shadow:0 4px 16px rgba(168,129,194,.08);}
-  .stage-card:hover{border-color:var(--purple);transform:translateY(-6px);box-shadow:0 12px 32px rgba(168,129,194,.2);}
+  .hero p{font-size:17px;font-weight:600;color:var(--mid);max-width:520px;line-height:1.75;margin-bottom:32px;animation:fadeUp .6s .2s ease both;}
+  .hero-cta{display:flex;gap:14px;margin-bottom:40px;flex-wrap:wrap;justify-content:center;animation:fadeUp .6s .25s ease both;}
+  .btn-primary{background:var(--purple);color:white;padding:15px 32px;border-radius:99px;font-size:16px;font-weight:800;border:none;cursor:pointer;font-family:'Nunito',sans-serif;box-shadow:0 8px 24px rgba(168,129,194,.45);transition:all .2s;}
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(168,129,194,.55);}
+  .btn-outline{background:white;color:var(--purple);padding:15px 32px;border-radius:99px;font-size:16px;font-weight:800;border:2px solid var(--purple-light);cursor:pointer;font-family:'Nunito',sans-serif;transition:all .2s;}
+  .btn-outline:hover{border-color:var(--purple);transform:translateY(-3px);box-shadow:0 8px 20px rgba(168,129,194,.2);}
+  .trust-bar{display:flex;gap:32px;margin-bottom:44px;animation:fadeUp .6s .3s ease both;}
+  .trust-item{font-size:13px;font-weight:700;color:var(--soft);}
+  .trust-item strong{color:var(--dark);font-weight:900;}
+  .stage-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:720px;width:100%;animation:fadeUp .6s .35s ease both;}
+  .stage-card{border:none;border-radius:20px;padding:22px 14px;cursor:pointer;transition:all .2s;text-align:center;box-shadow:0 4px 16px rgba(0,0,0,.06);}
+  .stage-card:nth-child(1){background:#FFE8F5;}
+  .stage-card:nth-child(2){background:#E8F0FF;}
+  .stage-card:nth-child(3){background:#E8FFE8;}
+  .stage-card:nth-child(4){background:#FFF3E8;}
+  .stage-card:nth-child(5){background:#F0E8FF;}
+  .stage-card:nth-child(6){background:#E8FFF5;}
+  .stage-card:hover{transform:translateY(-8px);box-shadow:0 16px 36px rgba(0,0,0,.12);}
   .stage-card:active{transform:translateY(0);}
   .stage-card .emoji{font-size:40px;margin-bottom:10px;display:block;transition:transform .2s;}
-  .stage-card:hover .emoji{transform:scale(1.15) rotate(-5deg);}
+  .stage-card:hover .emoji{transform:scale(1.2) rotate(-8deg);}
   .stage-card h3{font-size:13px;font-weight:900;color:var(--dark);margin-bottom:4px;}
   .stage-card p{font-size:11px;color:var(--soft);font-weight:600;}
   @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+
+  /* AFFIRMATION BANNER */
+  .affirm-banner{background:var(--purple);padding:56px 40px;text-align:center;position:relative;overflow:hidden;}
+  .affirm-banner::before{content:'🐻';position:absolute;font-size:200px;opacity:.06;top:-30px;left:50%;transform:translateX(-50%);}
+  .affirm-banner h2{font-size:clamp(22px,4vw,36px);font-weight:900;color:white;font-family:'Playfair Display',serif;margin-bottom:12px;position:relative;}
+  .affirm-banner p{font-size:15px;font-weight:600;color:rgba(255,255,255,.8);position:relative;}
+
+  /* ALT SECTION BG */
+  .section-alt{background:var(--purple-pale);}
+  .section-alt-wrap{background:var(--purple-pale);padding:2px 0;}
 
   /* SECTION */
   .section{padding:60px 40px;max-width:1200px;margin:0 auto;}
@@ -71,8 +95,8 @@
 
   /* PRODUCT GRID */
   .product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px;margin-bottom:60px;}
-  .product-card{background:white;border:1.5px solid var(--border);border-radius:20px;overflow:hidden;transition:all .2s;cursor:pointer;box-shadow:0 4px 16px rgba(168,129,194,.06);}
-  .product-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(168,129,194,.18);border-color:var(--purple-light);}
+  .product-card{background:white;border:1.5px solid var(--border);border-radius:20px;overflow:hidden;transition:all .2s;cursor:pointer;box-shadow:0 4px 16px rgba(168,129,194,.06);border-top:4px solid var(--purple);}
+  .product-card:hover{transform:translateY(-8px);box-shadow:0 20px 48px rgba(168,129,194,.22);border-color:var(--purple);}
   .product-img{width:100%;height:180px;background:linear-gradient(135deg,var(--purple-pale),var(--purple-mid));display:flex;align-items:center;justify-content:center;font-size:52px;position:relative;overflow:hidden;}
   .product-img img{width:100%;height:100%;object-fit:cover;}
   .platform-badge{position:absolute;top:12px;left:12px;font-size:11px;font-weight:800;padding:5px 14px;border-radius:99px;box-shadow:0 2px 8px rgba(0,0,0,.15);}
@@ -223,6 +247,15 @@
     <div class="hero-tag">🌸 專為新手媽媽設計的育兒平台</div>
     <h1>每一步，<br><em>都有我陪你</em> 🐻</h1>
     <p>從懷孕到三歲，精選好物推薦、全台比價工具與媽媽支援社群，讓育兒之路更輕鬆 💕</p>
+    <div class="hero-cta">
+      <button class="btn-primary" onclick="showPage('shop',document.querySelectorAll('.nav-tab')[1])">開始選購 →</button>
+      <button class="btn-outline" onclick="showPage('secondhand',document.querySelectorAll('.nav-tab')[2])">瀏覽二手好物</button>
+    </div>
+    <div class="trust-bar">
+      <div class="trust-item">🤱 <strong>5,000+</strong> 媽媽好評</div>
+      <div class="trust-item">🛒 精選 <strong>300+</strong> 商品</div>
+      <div class="trust-item">💬 <strong>24小時</strong> 社群支援</div>
+    </div>
     <div class="stage-grid">
       <div class="stage-card" onclick="goShop('懷孕期')"><span class="emoji">🌷</span><h3>懷孕期</h3><p>待產包、孕婦用品</p></div>
       <div class="stage-card" onclick="goShop('0-3個月')"><span class="emoji">🍼</span><h3>0 ~ 3 個月</h3><p>新生兒必備</p></div>
@@ -238,11 +271,16 @@
     </div>
     <div class="product-grid" id="home-products"><div class="loading"><div class="spinner"></div><p>載入好物中... 🐻</p></div></div>
   </div>
+
+  <div class="affirm-banner">
+    <h2>「做個『夠好的媽媽』就已經很棒了」🐻</h2>
+    <p>每天給自己一點鼓勵，BabyStep 與你同行 💕</p>
+  </div>
 </div>
 
 <!-- SHOP -->
 <div class="page" id="page-shop">
-  <div class="section">
+  <div class="section-alt-wrap"><div class="section">
     <div class="section-header">
       <div class="section-title">🛍️ 商品 <em>商城</em></div>
       <div style="font-size:14px;font-weight:700;color:var(--soft)" id="product-count"></div>
@@ -257,7 +295,7 @@
       <button class="filter-btn" onclick="filterProducts('哺乳',this)">🍼 哺乳</button>
     </div>
     <div class="product-grid" id="shop-products"><div class="loading"><div class="spinner"></div><p>載入好物中... 🐻</p></div></div>
-  </div>
+  </div></div>
 </div>
 
 <!-- SECONDHAND -->
