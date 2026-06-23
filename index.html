@@ -201,6 +201,47 @@
   .empty-icon{font-size:64px;margin-bottom:16px;}
   .empty p{color:var(--soft);font-size:15px;font-weight:700;}
 
+  /* PLATFORM BADGE EXTRA COLORS */
+  .p-akazaru{background:#FF6B35;color:white;}
+  .p-next{background:#222222;color:white;}
+  .p-lativ{background:#4A90D9;color:white;}
+  .p-chicco{background:#E94F1B;color:white;}
+  .p-ikea{background:#0058A3;color:white;}
+  .p-yodee{background:#F5A623;color:white;}
+
+  /* TOY FINDER */
+  .toy-finder{background:white;border-radius:24px;padding:40px;box-shadow:0 4px 24px rgba(168,129,194,.1);margin-bottom:40px;border:1.5px solid var(--border);}
+  .chip-label{font-size:14px;font-weight:900;color:var(--dark);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+  .chip-group{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px;}
+  .chip{padding:9px 20px;border-radius:99px;border:1.5px solid var(--border);font-size:13px;font-weight:700;cursor:pointer;background:white;color:var(--mid);transition:all .18s;font-family:'Nunito',sans-serif;user-select:none;}
+  .chip.selected{border-color:var(--purple);background:var(--purple);color:white;box-shadow:0 4px 12px rgba(168,129,194,.4);}
+  .chip:hover:not(.selected){border-color:var(--purple);color:var(--purple);background:var(--purple-pale);}
+  .btn-search-toys{background:var(--purple);color:white;padding:16px;border-radius:99px;font-size:16px;font-weight:800;border:none;cursor:pointer;font-family:'Nunito',sans-serif;box-shadow:0 8px 24px rgba(168,129,194,.45);transition:all .2s;width:100%;margin-top:8px;}
+  .btn-search-toys:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(168,129,194,.55);}
+  .toy-result-card{background:white;border-radius:20px;border:1.5px solid var(--border);border-left:4px solid var(--purple);padding:24px;box-shadow:0 4px 16px rgba(168,129,194,.06);transition:all .2s;}
+  .toy-result-card:hover{box-shadow:0 12px 32px rgba(168,129,194,.15);transform:translateY(-4px);}
+  .toy-name{font-size:16px;font-weight:900;color:var(--dark);margin-bottom:8px;display:flex;align-items:center;flex-wrap:wrap;gap:8px;}
+  .gift-star{background:linear-gradient(135deg,#FFD700,#FF9500);color:white;padding:3px 12px;border-radius:99px;font-size:11px;font-weight:900;white-space:nowrap;}
+  .toy-desc{font-size:13px;color:var(--mid);line-height:1.65;margin-bottom:14px;}
+  .toy-badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+  .toy-badge{padding:4px 12px;border-radius:99px;font-size:11px;font-weight:800;}
+  .toy-badge-age{background:var(--purple-pale);color:var(--purple);}
+  .toy-badge-type{background:#E8F5E9;color:#2E7D32;}
+  .toy-buy-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+  .btn-buy-toy{padding:8px 14px;border-radius:99px;font-size:12px;font-weight:800;text-decoration:none;border:1.5px solid;display:inline-flex;align-items:center;gap:4px;transition:all .15s;font-family:'Nunito',sans-serif;}
+  .btn-buy-toy:hover{transform:translateY(-2px);}
+  .btn-buy-primary{background:var(--purple);color:white;border-color:var(--purple);}
+  .btn-buy-outline{background:white;color:var(--purple);border-color:var(--purple-light);}
+  .social-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+  .social-label{font-size:12px;font-weight:800;color:var(--soft);}
+  .btn-social{padding:6px 13px;border-radius:99px;font-size:11px;font-weight:800;text-decoration:none;display:inline-flex;align-items:center;gap:4px;border:1.5px solid;transition:all .15s;font-family:'Nunito',sans-serif;}
+  .btn-social:hover{transform:translateY(-2px);}
+  .btn-dcard{border-color:#4F7CCF;color:#4F7CCF;background:#F0F4FF;}
+  .btn-threads{border-color:#1A1A1A;color:#1A1A1A;background:#F5F5F5;}
+  .btn-ig{border-color:#E1306C;color:#E1306C;background:#FFF0F5;}
+  .btn-fb{border-color:#1877F2;color:#1877F2;background:#EEF3FF;}
+  .toy-results-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;margin-bottom:60px;}
+
   @media(max-width:640px){
     nav{padding:0 16px;}
     .nav-tab{padding:7px 12px;font-size:13px;}
@@ -213,6 +254,7 @@
     .modal-header{padding:20px 20px 0;}
     .modal-body{padding:20px;}
     .hero-bear-left,.hero-bear-right{font-size:130px;}
+    .toy-finder{padding:24px;}
   }
 </style>
 </head>
@@ -230,6 +272,7 @@
   <div class="nav-tabs">
     <button class="nav-tab active" onclick="showPage('home',this)">🏠 首頁</button>
     <button class="nav-tab" onclick="showPage('shop',this)">🛍️ 商城</button>
+    <button class="nav-tab" onclick="showPage('toys',this)">🧸 玩具推薦</button>
     <button class="nav-tab" onclick="showPage('secondhand',this)">♻️ 換物</button>
     <button class="nav-tab" onclick="showPage('mama',this)">💜 支援</button>
   </div>
@@ -295,6 +338,50 @@
       <button class="filter-btn" onclick="filterProducts('哺乳',this)">🍼 哺乳</button>
     </div>
     <div class="product-grid" id="shop-products"><div class="loading"><div class="spinner"></div><p>載入好物中... 🐻</p></div></div>
+  </div></div>
+</div>
+
+<!-- TOYS -->
+<div class="page" id="page-toys">
+  <div class="section-alt-wrap"><div class="section">
+    <div class="section-header">
+      <div class="section-title">🧸 玩具 <em>推薦找找</em></div>
+    </div>
+    <div class="toy-finder">
+      <div class="chip-label">👶 寶寶年齡</div>
+      <div class="chip-group" id="age-chips">
+        <div class="chip" onclick="toggleChip(this,'age')">0 ~ 6 個月</div>
+        <div class="chip" onclick="toggleChip(this,'age')">6 ~ 12 個月</div>
+        <div class="chip" onclick="toggleChip(this,'age')">1 ~ 2 歲</div>
+        <div class="chip" onclick="toggleChip(this,'age')">2 ~ 3 歲</div>
+      </div>
+      <div class="chip-label">🎯 玩具類別 <span style="font-weight:600;color:var(--soft);font-size:12px">（可複選）</span></div>
+      <div class="chip-group" id="type-chips">
+        <div class="chip" onclick="toggleChip(this,'type')">感統刺激</div>
+        <div class="chip" onclick="toggleChip(this,'type')">益智積木</div>
+        <div class="chip" onclick="toggleChip(this,'type')">音樂律動</div>
+        <div class="chip" onclick="toggleChip(this,'type')">扮家家酒</div>
+        <div class="chip" onclick="toggleChip(this,'type')">圖書繪本</div>
+        <div class="chip" onclick="toggleChip(this,'type')">戶外運動</div>
+        <div class="chip" onclick="toggleChip(this,'type')">水沙玩具</div>
+      </div>
+      <div class="chip-label">🎁 用途</div>
+      <div class="chip-group" id="gift-chips">
+        <div class="chip selected" onclick="toggleChip(this,'gift')">自用</div>
+        <div class="chip" onclick="toggleChip(this,'gift')">送禮</div>
+      </div>
+      <div id="budget-area" style="display:none">
+        <div class="chip-label">💰 禮物預算</div>
+        <div class="chip-group" id="budget-chips">
+          <div class="chip" onclick="toggleChip(this,'budget')">NT$500 以下</div>
+          <div class="chip" onclick="toggleChip(this,'budget')">NT$500 ~ 1,000</div>
+          <div class="chip selected" onclick="toggleChip(this,'budget')">NT$1,000 ~ 2,000</div>
+          <div class="chip" onclick="toggleChip(this,'budget')">NT$2,000 以上</div>
+        </div>
+      </div>
+      <button class="btn-search-toys" onclick="searchToys()">🔍 搜尋推薦玩具</button>
+    </div>
+    <div id="toy-results"></div>
   </div></div>
 </div>
 
@@ -390,10 +477,167 @@ const SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSI
 const{createClient}=supabase;
 const db=createClient(SUPABASE_URL,SUPABASE_KEY);
 
+// ===== 內建商品目錄（Supabase 空時使用）=====
+const CATALOG=[
+  {id:'c01',name:'卡多摩 5合1多功能嬰兒床',category:'寢具',age_stage:'0-3個月',price:12800,image_url:null,product_platforms:[
+    {platform:'卡多摩官網',price:12800,shop_url:'https://www.akazaru.com.tw/search/?q=%E5%AC%B0%E5%85%92%E5%BA%8A'},
+    {platform:'媽咪愛',price:13500,shop_url:'https://www.mamilove.com.tw/search?keyword=%E5%AC%B0%E5%85%92%E5%BA%8A'},
+    {platform:'蝦皮',price:12300,shop_url:'https://shopee.tw/search?keyword=%E5%AC%B0%E5%85%92%E5%BA%8A'},
+  ]},
+  {id:'c02',name:'ErgoPouch 有機棉嬰兒睡袋 TOG1.0',category:'寢具',age_stage:'0-3個月',price:1680,image_url:null,product_platforms:[
+    {platform:'媽咪愛',price:1680,shop_url:'https://www.mamilove.com.tw/search?keyword=ErgoPouch'},
+    {platform:'momo',price:1590,shop_url:'https://www.momoshop.com.tw/search/searchShop.jsp?keyword=ErgoPouch+%E7%9D%A1%E8%A2%8B'},
+    {platform:'蝦皮',price:1550,shop_url:'https://shopee.tw/search?keyword=ErgoPouch+%E7%9D%A1%E8%A2%8B'},
+  ]},
+  {id:'c03',name:'Combi 透氣防水嬰兒床墊',category:'寢具',age_stage:'0-3個月',price:2480,image_url:null,product_platforms:[
+    {platform:'媽咪愛',price:2480,shop_url:'https://www.mamilove.com.tw/search?keyword=Combi+%E5%BA%8A%E5%A2%8A'},
+    {platform:'momo',price:2380,shop_url:'https://www.momoshop.com.tw/search/searchShop.jsp?keyword=Combi+%E5%BA%8A%E5%A2%8A'},
+    {platform:'蝦皮',price:2200,shop_url:'https://shopee.tw/search?keyword=Combi+%E5%AC%B0%E5%85%92%E5%BA%8A%E5%A2%8A'},
+  ]},
+  {id:'c04',name:'Joie Litetrax 輕量雙向嬰兒推車',category:'出行',age_stage:'4-6個月',price:8500,image_url:null,product_platforms:[
+    {platform:'媽咪愛',price:8500,shop_url:'https://www.mamilove.com.tw/search?keyword=Joie+%E6%8E%A8%E8%BB%8A'},
+    {platform:'卡多摩官網',price:8800,shop_url:'https://www.akazaru.com.tw/search/?q=Joie'},
+    {platform:'momo',price:8200,shop_url:'https://www.momoshop.com.tw/search/searchShop.jsp?keyword=Joie+%E6%8E%A8%E8%BB%8A'},
+  ]},
+  {id:'c05',name:'奇哥 i-Size 新生兒提籃汽座',category:'出行',age_stage:'0-3個月',price:7200,image_url:null,product_platforms:[
+    {platform:'奇哥官網',price:7200,shop_url:'https://www.chicco.com.tw/search?q=%E6%8F%90%E7%B1%83'},
+    {platform:'媽咪愛',price:7500,shop_url:'https://www.mamilove.com.tw/search?keyword=%E5%A5%87%E5%93%A5+%E6%8F%90%E7%B1%83'},
+    {platform:'蝦皮',price:6900,shop_url:'https://shopee.tw/search?keyword=%E5%A5%87%E5%93%A5+%E6%8F%90%E7%B1%83'},
+  ]},
+  {id:'c06',name:'Ergobaby 360° 全方位人體工學背巾',category:'出行',age_stage:'0-12個月',price:5900,image_url:null,product_platforms:[
+    {platform:'媽咪愛',price:5900,shop_url:'https://www.mamilove.com.tw/search?keyword=Ergobaby'},
+    {platform:'momo',price:5600,shop_url:'https://www.momoshop.com.tw/search/searchShop.jsp?keyword=Ergobaby+%E8%83%8C%E5%B7%BE'},
+    {platform:'蝦皮',price:5500,shop_url:'https://shopee.tw/search?keyword=Ergobaby+360'},
+  ]},
+  {id:'c07',name:'RICHELL 副食品調理10件組',category:'副食品',age_stage:'4-6個月',price:1280,image_url:null,product_platforms:[
+    {platform:'媽咪愛',price:1280,shop_url:'https://www.mamilove.com.tw/search?keyword=RICHELL+%E5%89%AF%E9%A3%9F%E5%93%81'},
+    {platform:'momo',price:1180,shop_url:'https://www.momoshop.com.tw/search/searchShop.jsp?keyword=RICHELL+%E5%89%AF%E9%A3%9F%E5%93%81'},
+    {platform:'蝦皮',price:1150,shop_url:'https://shopee.tw/search?keyword=RICHELL+%E5%89%AF%E9%A3%9F%E5%93%81'},
+  ]},
+  {id:'c08',name:'Beaba Babycook 4合1副食品調理機',category:'副食品',age_stage:'4-6個月',price:5980,image_url:null,product_platforms:[
+    {platform:'媽咪愛',price:5980,shop_url:'https://www.mamilove.com.tw/search?keyword=Beaba'},
+    {platform:'momo',price:5780,shop_url:'https://www.momoshop.com.tw/search/searchShop.jsp?keyword=Beaba+Babycook'},
+    {platform:'蝦皮',price:5600,shop_url:'https://shopee.tw/search?keyword=Beaba+%E5%89%AF%E9%A3%9F%E5%93%81'},
+  ]},
+  {id:'c09',name:'Munchkin 不倒翁學習餐具4件組',category:'副食品',age_stage:'0-12個月',price:480,image_url:null,product_platforms:[
+    {platform:'媽咪愛',price:480,shop_url:'https://www.mamilove.com.tw/search?keyword=Munchkin+%E9%A4%90%E5%85%B7'},
+    {platform:'momo',price:450,shop_url:'https://www.momoshop.com.tw/search/searchShop.jsp?keyword=Munchkin+%E9%A4%90%E5%85%B7'},
+    {platform:'蝦皮',price:420,shop_url:'https://shopee.tw/search?keyword=Munchkin+%E5%AD%B8%E7%BF%92%E9%A4%90%E5%85%B7'},
+  ]},
+  {id:'c10',name:'Medela Swing Maxi 雙邊電動吸乳器',category:'哺乳',age_stage:'0-3個月',price:6800,image_url:null,product_platforms:[
+    {platform:'媽咪愛',price:6800,shop_url:'https://www.mamilove.com.tw/search?keyword=Medela'},
+    {platform:'momo',price:6500,shop_url:'https://www.momoshop.com.tw/search/searchShop.jsp?keyword=Medela+%E5%90%B8%E4%B9%B3%E5%99%A8'},
+    {platform:'蝦皮',price:6300,shop_url:'https://shopee.tw/search?keyword=Medela+%E5%90%B8%E4%B9%B3%E5%99%A8'},
+  ]},
+  {id:'c11',name:'貝親 寬口徑母乳實感奶瓶 160ml',category:'哺乳',age_stage:'0-3個月',price:380,image_url:null,product_platforms:[
+    {platform:'媽咪愛',price:380,shop_url:'https://www.mamilove.com.tw/search?keyword=%E8%B2%9D%E8%A6%AA+%E5%AF%AC%E5%8F%A3%E5%A5%B6%E7%93%B6'},
+    {platform:'momo',price:360,shop_url:'https://www.momoshop.com.tw/search/searchShop.jsp?keyword=%E8%B2%9D%E8%A6%AA+%E5%AF%AC%E5%8F%A3%E5%A5%B6%E7%93%B6'},
+    {platform:'蝦皮',price:340,shop_url:'https://shopee.tw/search?keyword=%E8%B2%9D%E8%A6%AA+%E6%AF%8D%E4%B9%B3%E5%AF%A6%E6%84%9F'},
+  ]},
+  {id:'c12',name:'小獅王辛巴 數位恆溫溫奶器',category:'哺乳',age_stage:'0-3個月',price:1280,image_url:null,product_platforms:[
+    {platform:'媽咪愛',price:1280,shop_url:'https://www.mamilove.com.tw/search?keyword=%E8%BE%9B%E5%B7%B4+%E6%BA%AB%E5%A5%B6%E5%99%A8'},
+    {platform:'momo',price:1200,shop_url:'https://www.momoshop.com.tw/search/searchShop.jsp?keyword=%E8%BE%9B%E5%B7%B4+%E6%BA%AB%E5%A5%B6%E5%99%A8'},
+    {platform:'蝦皮',price:1150,shop_url:'https://shopee.tw/search?keyword=%E8%BE%9B%E5%B7%B4+%E6%BA%AB%E5%A5%B6%E5%99%A8'},
+  ]},
+  {id:'c13',name:'NEXT 嬰兒純棉禮盒 5件組',category:'衣物',age_stage:'0-3個月',price:1290,image_url:null,product_platforms:[
+    {platform:'NEXT 官網',price:1290,shop_url:'https://www.next.com.tw/en/s/baby'},
+    {platform:'蝦皮',price:1350,shop_url:'https://shopee.tw/search?keyword=NEXT+%E5%AC%B0%E5%85%92+%E7%A6%AE%E7%9B%92'},
+  ]},
+  {id:'c14',name:'LATIV 有機棉嬰兒連身衣 3件組',category:'衣物',age_stage:'0-3個月',price:790,image_url:null,product_platforms:[
+    {platform:'LATIV 官網',price:790,shop_url:'https://www.lativ.com.tw/newborn/'},
+    {platform:'蝦皮',price:820,shop_url:'https://shopee.tw/search?keyword=LATIV+%E5%AC%B0%E5%85%92%E9%80%A3%E8%BA%AB%E8%A1%A3'},
+  ]},
+  {id:'c15',name:'Aden+Anais 有機棉紗布包巾 4條入',category:'衣物',age_stage:'0-3個月',price:1680,image_url:null,product_platforms:[
+    {platform:'媽咪愛',price:1680,shop_url:'https://www.mamilove.com.tw/search?keyword=Aden+Anais'},
+    {platform:'momo',price:1580,shop_url:'https://www.momoshop.com.tw/search/searchShop.jsp?keyword=Aden+Anais+%E5%8C%85%E5%B7%BE'},
+    {platform:'蝦皮',price:1520,shop_url:'https://shopee.tw/search?keyword=Aden+Anais+%E5%8C%85%E5%B7%BE'},
+  ]},
+  {id:'c16',name:'Fisher-Price 彩虹感統搖鈴禮盒',category:'玩具',age_stage:'0-3個月',price:780,image_url:null,product_platforms:[
+    {platform:'媽咪愛',price:780,shop_url:'https://www.mamilove.com.tw/search?keyword=Fisher-Price+%E6%90%96%E9%88%B4'},
+    {platform:'momo',price:720,shop_url:'https://www.momoshop.com.tw/search/searchShop.jsp?keyword=Fisher+Price+%E6%90%96%E9%88%B4'},
+    {platform:'蝦皮',price:699,shop_url:'https://shopee.tw/search?keyword=Fisher-Price+%E6%90%96%E9%88%B4'},
+  ]},
+  {id:'c17',name:'VTech 音樂學習鋼琴',category:'玩具',age_stage:'0-12個月',price:1280,image_url:null,product_platforms:[
+    {platform:'媽咪愛',price:1280,shop_url:'https://www.mamilove.com.tw/search?keyword=VTech+%E9%8B%BC%E7%90%B4'},
+    {platform:'momo',price:1180,shop_url:'https://www.momoshop.com.tw/search/searchShop.jsp?keyword=VTech+%E9%8B%BC%E7%90%B4'},
+    {platform:'蝦皮',price:1150,shop_url:'https://shopee.tw/search?keyword=VTech+%E9%8B%BC%E7%90%B4'},
+  ]},
+  {id:'c18',name:'HABA 木製彩色積木 30塊',category:'玩具',age_stage:'1-2歲',price:2800,image_url:null,product_platforms:[
+    {platform:'媽咪愛',price:2800,shop_url:'https://www.mamilove.com.tw/search?keyword=HABA+%E7%A9%8D%E6%9C%A8'},
+    {platform:'卡多摩官網',price:2900,shop_url:'https://www.akazaru.com.tw/search/?q=HABA'},
+    {platform:'蝦皮',price:2650,shop_url:'https://shopee.tw/search?keyword=HABA+%E6%9C%A8%E8%A3%BD%E7%A9%8D%E6%9C%A8'},
+  ]},
+  {id:'c19',name:'BRIO 木製小火車軌道入門組',category:'玩具',age_stage:'1-3歲',price:2200,image_url:null,product_platforms:[
+    {platform:'媽咪愛',price:2200,shop_url:'https://www.mamilove.com.tw/search?keyword=BRIO+%E7%81%AB%E8%BB%8A'},
+    {platform:'卡多摩官網',price:2350,shop_url:'https://www.akazaru.com.tw/search/?q=BRIO'},
+    {platform:'蝦皮',price:2080,shop_url:'https://shopee.tw/search?keyword=BRIO+%E6%9C%A8%E8%A3%BD%E7%81%AB%E8%BB%8A'},
+  ]},
+  {id:'c20',name:'麗嬰房 感統觸覺球 8入組',category:'玩具',age_stage:'0-3個月',price:580,image_url:null,product_platforms:[
+    {platform:'媽咪愛',price:580,shop_url:'https://www.mamilove.com.tw/search?keyword=%E8%A7%B8%E8%A6%BA%E7%90%83'},
+    {platform:'蝦皮',price:520,shop_url:'https://shopee.tw/search?keyword=%E5%AC%B0%E5%85%92%E6%84%9F%E7%B5%B1%E8%A7%B8%E8%A6%BA%E7%90%83'},
+  ]},
+];
+
+// ===== 玩具推薦資料 =====
+const TOY_DATA=[
+  {id:'t01',name:'Fisher-Price 彩虹感統搖鈴組',ages:['0 ~ 6 個月','6 ~ 12 個月'],types:['感統刺激'],gift:true,
+   desc:'色彩鮮豔訓練視覺追蹤，輕量好握，是最受歡迎的彌月禮之一',
+   platforms:[{name:'媽咪愛',price:780,url:'https://www.mamilove.com.tw/search?keyword=Fisher-Price+%E6%90%96%E9%88%B4'},{name:'momo',price:720,url:'https://www.momoshop.com.tw/search/searchShop.jsp?keyword=Fisher+Price+%E6%90%96%E9%88%B4'},{name:'蝦皮',price:699,url:'https://shopee.tw/search?keyword=Fisher-Price+%E6%90%96%E9%88%B4'}],
+   social:'Fisher-Price %E6%90%96%E9%88%B4 %E6%8E%A8%E8%96%A6'},
+  {id:'t02',name:'黑白視覺刺激閃卡套組',ages:['0 ~ 6 個月'],types:['感統刺激'],gift:true,
+   desc:'高對比黑白圖案促進新生兒視覺神經發展，每天互動10分鐘效果明顯',
+   platforms:[{name:'蝦皮',price:199,url:'https://shopee.tw/search?keyword=%E5%AC%B0%E5%85%92%E9%BB%91%E7%99%BD%E5%8D%A1'},{name:'momo',price:220,url:'https://www.momoshop.com.tw/search/searchShop.jsp?keyword=%E5%AC%B0%E5%85%92%E9%BB%91%E7%99%BD%E5%8D%A1'}],
+   social:'%E5%AC%B0%E5%85%92%E9%BB%91%E7%99%BD%E5%8D%A1 %E8%A6%96%E8%A6%BA%E5%88%BA%E6%BF%80 %E6%8E%A8%E8%96%A6'},
+  {id:'t03',name:'Tiny Love 旋轉音樂床鈴',ages:['0 ~ 6 個月'],types:['音樂律動','感統刺激'],gift:true,
+   desc:'安撫、感官刺激一次到位，多個可拆卸玩偶，嬰兒床必備神器',
+   platforms:[{name:'媽咪愛',price:1880,url:'https://www.mamilove.com.tw/search?keyword=Tiny+Love+%E5%BA%8A%E9%88%B4'},{name:'蝦皮',price:1650,url:'https://shopee.tw/search?keyword=Tiny+Love+%E9%9F%B3%E6%A8%82%E5%BA%8A%E9%88%B4'}],
+   social:'Tiny+Love+%E5%BA%8A%E9%88%B4 %E8%A9%95%E5%83%B9'},
+  {id:'t04',name:'Nuby 矽膠感官洗澡玩具組',ages:['6 ~ 12 個月'],types:['感統刺激','水沙玩具'],gift:true,
+   desc:'無毒矽膠、多種形狀方便抓握，洗澡時間變得超好玩',
+   platforms:[{name:'媽咪愛',price:380,url:'https://www.mamilove.com.tw/search?keyword=Nuby+%E6%B4%97%E6%BE%A1%E7%8E%A9%E5%85%B7'},{name:'蝦皮',price:320,url:'https://shopee.tw/search?keyword=%E5%AC%B0%E5%85%92%E6%B4%97%E6%BE%A1%E7%8E%A9%E5%85%B7'}],
+   social:'%E5%AC%B0%E5%85%92%E6%B4%97%E6%BE%A1%E7%8E%A9%E5%85%B7 %E6%8E%A8%E8%96%A6'},
+  {id:'t05',name:'VTech 音樂學習鋼琴',ages:['6 ~ 12 個月','1 ~ 2 歲'],types:['音樂律動'],gift:true,
+   desc:'腳踢、手拍都能發出音符，平躺/直立兩用，伴隨寶寶成長',
+   platforms:[{name:'媽咪愛',price:1280,url:'https://www.mamilove.com.tw/search?keyword=VTech+%E9%8B%BC%E7%90%B4'},{name:'momo',price:1180,url:'https://www.momoshop.com.tw/search/searchShop.jsp?keyword=VTech+%E9%8B%BC%E7%90%B4'},{name:'蝦皮',price:1150,url:'https://shopee.tw/search?keyword=VTech+%E9%8B%BC%E7%90%B4'}],
+   social:'VTech+%E9%8B%BC%E7%90%B4 %E5%AC%B0%E5%85%92 %E8%A9%95%E5%83%B9'},
+  {id:'t06',name:'嬰兒布書 + 洞洞書套組',ages:['6 ~ 12 個月','1 ~ 2 歲'],types:['圖書繪本'],gift:true,
+   desc:'安全布料可啃咬清洗，訓練翻頁、視覺與語言發展，早教必備',
+   platforms:[{name:'蝦皮',price:250,url:'https://shopee.tw/search?keyword=%E5%AC%B0%E5%85%92%E5%B8%83%E6%9B%B8'},{name:'momo',price:280,url:'https://www.momoshop.com.tw/search/searchShop.jsp?keyword=%E5%AC%B0%E5%85%92%E5%B8%83%E6%9B%B8'}],
+   social:'%E5%AC%B0%E5%85%92%E5%B8%83%E6%9B%B8 %E6%B4%9E%E6%B4%9E%E6%9B%B8 %E6%8E%A8%E8%96%A6'},
+  {id:'t07',name:'Mega Bloks 得寶大顆積木 80塊',ages:['1 ~ 2 歲'],types:['益智積木'],gift:true,
+   desc:'大顆安全積木訓練手眼協調與創意建構，顏色鮮豔、耐摔耐咬',
+   platforms:[{name:'媽咪愛',price:1580,url:'https://www.mamilove.com.tw/search?keyword=Mega+Bloks'},{name:'momo',price:1480,url:'https://www.momoshop.com.tw/search/searchShop.jsp?keyword=Mega+Bloks'},{name:'蝦皮',price:1380,url:'https://shopee.tw/search?keyword=Mega+Bloks+%E5%A4%A7%E7%A9%8D%E6%9C%A8'}],
+   social:'Mega+Bloks+%E7%A9%8D%E6%9C%A8 1%E6%AD%B2 %E6%8E%A8%E8%96%A6'},
+  {id:'t08',name:'LEGO DUPLO 幼兒積木基本盒',ages:['1 ~ 2 歲','2 ~ 3 歲'],types:['益智積木'],gift:true,
+   desc:'全球最受歡迎幼兒積木，安全大顆色彩多，激發無限創造力',
+   platforms:[{name:'媽咪愛',price:1980,url:'https://www.mamilove.com.tw/search?keyword=LEGO+DUPLO'},{name:'卡多摩官網',price:2100,url:'https://www.akazaru.com.tw/search/?q=DUPLO'},{name:'蝦皮',price:1850,url:'https://shopee.tw/search?keyword=LEGO+DUPLO+%E7%A9%8D%E6%9C%A8'}],
+   social:'LEGO+DUPLO+%E5%B9%BC%E5%85%92 %E7%A9%8D%E6%9C%A8 %E6%8E%A8%E8%96%A6'},
+  {id:'t09',name:'形狀配對木製玩具',ages:['1 ~ 2 歲'],types:['益智積木'],gift:true,
+   desc:'訓練邏輯思維與手眼協調，木製無毒、台灣媽媽最愛入門益智玩具',
+   platforms:[{name:'蝦皮',price:480,url:'https://shopee.tw/search?keyword=%E5%BD%A2%E7%8B%80%E9%85%8D%E5%B0%8D+%E6%9C%A8%E8%A3%BD%E7%8E%A9%E5%85%B7'},{name:'momo',price:520,url:'https://www.momoshop.com.tw/search/searchShop.jsp?keyword=%E5%BD%A2%E7%8B%80%E9%85%8D%E5%B0%8D%E7%8E%A9%E5%85%B7'}],
+   social:'%E5%BD%A2%E7%8B%80%E9%85%8D%E5%B0%8D%E7%8E%A9%E5%85%B7 1%E6%AD%B2 %E6%8E%A8%E8%96%A6'},
+  {id:'t10',name:'IKEA DUKTIG 木製廚房扮家家酒',ages:['2 ~ 3 歲'],types:['扮家家酒'],gift:true,
+   desc:'模擬廚房培養創意角色扮演，附豐富配件，CP值超高的經典玩具',
+   platforms:[{name:'IKEA 官網',price:2999,url:'https://www.ikea.com/tw/zh/search/?q=DUKTIG'},{name:'蝦皮',price:3200,url:'https://shopee.tw/search?keyword=IKEA+DUKTIG+%E5%BB%9A%E6%88%BF'}],
+   social:'IKEA+DUKTIG+%E5%BB%9A%E6%88%BF%E7%8E%A9%E5%85%B7 %E5%B9%BC%E5%85%92 %E6%8E%A8%E8%96%A6'},
+  {id:'t11',name:'Crayola 可水洗大蠟筆 16色',ages:['2 ~ 3 歲'],types:['益智積木'],gift:true,
+   desc:'可水洗成份畫到衣服也不怕，安全無毒，開啟寶寶的塗鴉創作旅程',
+   platforms:[{name:'媽咪愛',price:280,url:'https://www.mamilove.com.tw/search?keyword=Crayola+%E8%A0%9F%E7%AD%86'},{name:'momo',price:250,url:'https://www.momoshop.com.tw/search/searchShop.jsp?keyword=Crayola+%E8%A0%9F%E7%AD%86'},{name:'蝦皮',price:230,url:'https://shopee.tw/search?keyword=Crayola+%E5%8F%AF%E6%B0%B4%E6%B4%97%E8%A0%9F%E7%AD%86'}],
+   social:'Crayola+%E8%A0%9F%E7%AD%86 %E5%B9%BC%E5%85%92 %E5%AE%89%E5%85%A8'},
+  {id:'t12',name:'木製拼圖 24片動物主題',ages:['2 ~ 3 歲'],types:['益智積木'],gift:true,
+   desc:'動物主題訓練手眼協調與空間認知，木製邊角光滑安全',
+   platforms:[{name:'蝦皮',price:320,url:'https://shopee.tw/search?keyword=%E5%B9%BC%E5%85%92+%E6%9C%A8%E8%A3%BD%E6%8B%BC%E5%9C%96'},{name:'momo',price:350,url:'https://www.momoshop.com.tw/search/searchShop.jsp?keyword=%E5%B9%BC%E5%85%92%E6%9C%A8%E8%A3%BD%E6%8B%BC%E5%9C%96'}],
+   social:'%E5%B9%BC%E5%85%92+%E6%8B%BC%E5%9C%96 %E6%8E%A8%E8%96%A6 2%E6%AD%B2'},
+  {id:'t13',name:'Strider 12吋兒童平衡滑步車',ages:['2 ~ 3 歲'],types:['戶外運動'],gift:true,
+   desc:'學腳踏車前的最佳訓練，鍛鍊平衡感，台灣媽媽界評價超高',
+   platforms:[{name:'媽咪愛',price:3800,url:'https://www.mamilove.com.tw/search?keyword=%E6%BB%91%E6%AD%A5%E8%BB%8A'},{name:'蝦皮',price:3500,url:'https://shopee.tw/search?keyword=%E5%B9%B3%E8%A1%A1%E6%BB%91%E6%AD%A5%E8%BB%8A'}],
+   social:'%E6%BB%91%E6%AD%A5%E8%BB%8A %E6%8E%A8%E8%96%A6 2%E6%AD%B2 %E5%B9%BC%E5%85%92'},
+];
+
 // 平台顯示名稱
 const PLATFORM_LABEL={
   'momo':'momo購物','蝦皮':'蝦皮購物','mamilove':'媽咪愛',
-  'akazaru':'阿卡將','yodee':'Yodee','angela':'Angela安琪拉','mamahow':'mamahow'
+  'akazaru':'卡多摩','yodee':'Yodee好物','angela':'安琪拉'
 };
 
 function showPage(name,btn){
@@ -405,45 +649,29 @@ function showPage(name,btn){
   if(name==='shop')loadShopProducts();
   if(name==='secondhand')loadSecondhand();
 }
-function goShop(stage){
-  showPage('shop',document.querySelectorAll('.nav-tab')[1]);
-  loadShopProducts(stage);
-}
-function showToast(msg,type='success'){
-  const t=document.getElementById('toast');
-  t.textContent=msg;t.className='toast show '+type;
-  setTimeout(()=>t.className='toast',3000);
-}
-function pClass(p){
-  if(p==='momo')return 'p-momo';
-  if(p==='蝦皮')return 'p-shopee';
-  return 'p-mamilove';
-}
-function catEmoji(c){
-  return{'寢具':'🛏','出行':'🚼','副食品':'🥣','衣物':'👕','玩具':'🧸','哺乳':'🍼'}[c]||'🛍️';
-}
+function goShop(stage){showPage('shop',document.querySelectorAll('.nav-tab')[1]);loadShopProducts(stage);}
+function showToast(msg,type='success'){const t=document.getElementById('toast');t.textContent=msg;t.className='toast show '+type;setTimeout(()=>t.className='toast',3000);}
+function pClass(p){const m={'momo':'p-momo','蝦皮':'p-shopee','媽咪愛':'p-mamilove','卡多摩官網':'p-akazaru','NEXT 官網':'p-next','LATIV 官網':'p-lativ','奇哥官網':'p-chicco','IKEA 官網':'p-ikea','Yodee好物':'p-yodee'};return m[p]||'p-mamilove';}
+function catEmoji(c){return{'寢具':'🛏','出行':'🚼','副食品':'🥣','衣物':'👕','玩具':'🧸','哺乳':'🍼'}[c]||'🛍️';}
 
-// 商品快取，避免重複字串轉義問題
 const productCache={};
-
-function validProduct(p){ return p && p.name && p.name.trim()!==''; }
+function validProduct(p){return p&&p.name&&p.name.trim()!=='';}
 
 function productCard(p){
   productCache[p.id]=p;
-  const platforms=p.product_platforms||[];
-  const withLink=platforms.filter(pp=>pp.shop_url).sort((a,b)=>(a.price||0)-(b.price||0));
-  const cheapest=withLink[0];
-  const img=p.image_url
-    ?`<img src="${p.image_url}" alt="" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.fallback-emoji').style.display='block'">`
-    :'';
+  const pls=(p.product_platforms||[]).filter(pp=>pp.shop_url).sort((a,b)=>(a.price||0)-(b.price||0));
+  const cheapest=pls[0];
+  const minPrice=cheapest?.price||p.price||0;
+  const img=p.image_url?`<img src="${p.image_url}" alt="" loading="lazy" onerror="this.style.display='none'">`:'';
   const buyBtn=cheapest
     ?`<a class="btn-compare" href="${cheapest.shop_url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">立即購買 →</a>`
     :`<button class="btn-compare" onclick="event.stopPropagation();openModalById('${p.id}')">查看比價 🐻</button>`;
+  const badge=pls.length?`${pls[0].platform}${pls.length>1?' +'+(pls.length-1)+'家':''}` :'商城';
   return`<div class="product-card" onclick="openModalById('${p.id}')">
     <div class="product-img">
       ${img}
-      <span class="fallback-emoji" style="font-size:52px;${p.image_url?'display:none':''}">${catEmoji(p.category)}</span>
-      <div class="platform-badge ${pClass(p.platform)}">${p.platform||'商城'}</div>
+      <span style="font-size:52px;${p.image_url?'display:none':''}">${catEmoji(p.category)}</span>
+      <div class="platform-badge ${pClass(pls[0]?.platform)}">${badge}</div>
     </div>
     <div class="product-body">
       <div class="product-name">${p.name}</div>
@@ -452,35 +680,34 @@ function productCard(p){
         ${p.category?`<span class="product-tag">${p.category}</span>`:''}
       </div>
       <div class="product-footer">
-        <div class="product-price">NT$ ${(p.price||0).toLocaleString()}</div>
+        <div class="product-price">NT$ ${minPrice.toLocaleString()}<span style="font-size:11px;color:var(--soft);font-weight:600"> 起</span></div>
         ${buyBtn}
       </div>
     </div>
   </div>`;
 }
 
-function fetchProducts(query){
-  return query.select('*, product_platforms(*)');
-}
-
 async function loadHomeProducts(){
   const el=document.getElementById('home-products');
-  const{data,error}=await fetchProducts(db.from('products')).limit(8);
-  if(error){el.innerHTML='<div class="empty"><div class="empty-icon">😢</div><p>載入失敗，請重新整理</p></div>';return;}
-  const valid=data?.filter(validProduct)||[];
-  el.innerHTML=valid.length?valid.map(productCard).join(''):'<div class="empty"><div class="empty-icon">🛍️</div><p>暫無商品</p></div>';
+  let products=[];
+  try{const{data}=await db.from('products').select('*,product_platforms(*)').limit(8);products=(data||[]).filter(validProduct);}catch(e){}
+  if(!products.length)products=CATALOG.slice(0,8);
+  el.innerHTML=products.map(productCard).join('');
 }
 
 async function loadShopProducts(stageFilter){
   const el=document.getElementById('shop-products');
   el.innerHTML='<div class="loading"><div class="spinner"></div><p>載入好物中... 🐻</p></div>';
-  let q=db.from('products');
-  if(stageFilter)q=q.eq('age_stage',stageFilter);
-  const{data,error}=await fetchProducts(q);
-  if(error){el.innerHTML='<div class="empty"><div class="empty-icon">😢</div><p>載入失敗，請重新整理</p></div>';return;}
-  const valid=data?.filter(validProduct)||[];
-  document.getElementById('product-count').textContent=valid.length?`共 ${valid.length} 件好物 🌸`:'';
-  el.innerHTML=valid.length?valid.map(productCard).join(''):'<div class="empty"><div class="empty-icon">🔍</div><p>此分類暫無商品，敬請期待！</p></div>';
+  let products=[];
+  try{
+    let q=db.from('products').select('*,product_platforms(*)');
+    if(stageFilter)q=q.eq('age_stage',stageFilter);
+    const{data}=await q;
+    products=(data||[]).filter(validProduct);
+  }catch(e){}
+  if(!products.length)products=stageFilter?CATALOG.filter(p=>p.age_stage===stageFilter):CATALOG;
+  document.getElementById('product-count').textContent=`共 ${products.length} 件好物 🌸`;
+  el.innerHTML=products.length?products.map(productCard).join(''):'<div class="empty"><div class="empty-icon">🔍</div><p>此分類暫無商品</p></div>';
 }
 
 async function filterProducts(cat,btn){
@@ -488,54 +715,105 @@ async function filterProducts(cat,btn){
   btn.classList.add('active');
   const el=document.getElementById('shop-products');
   el.innerHTML='<div class="loading"><div class="spinner"></div><p>載入好物中... 🐻</p></div>';
-  let q=db.from('products');
-  if(cat!=='all')q=q.eq('category',cat);
-  const{data,error}=await fetchProducts(q);
-  if(error){el.innerHTML='<div class="empty"><div class="empty-icon">😢</div><p>載入失敗，請重新整理</p></div>';return;}
-  const valid=data?.filter(validProduct)||[];
-  document.getElementById('product-count').textContent=valid.length?`共 ${valid.length} 件好物 🌸`:'';
-  el.innerHTML=valid.length?valid.map(productCard).join(''):'<div class="empty"><div class="empty-icon">🔍</div><p>此分類暫無商品，敬請期待！</p></div>';
+  let products=[];
+  try{
+    let q=db.from('products').select('*,product_platforms(*)');
+    if(cat!=='all')q=q.eq('category',cat);
+    const{data}=await q;
+    products=(data||[]).filter(validProduct);
+  }catch(e){}
+  if(!products.length)products=cat==='all'?CATALOG:CATALOG.filter(p=>p.category===cat);
+  document.getElementById('product-count').textContent=`共 ${products.length} 件好物 🌸`;
+  el.innerHTML=products.length?products.map(productCard).join(''):'<div class="empty"><div class="empty-icon">🔍</div><p>此分類暫無商品，敬請期待！</p></div>';
 }
 
 function openModalById(id){
   const p=productCache[id];
   if(!p)return;
-  const overlay=document.getElementById('modal-overlay');
-  overlay.classList.add('open');
+  document.getElementById('modal-overlay').classList.add('open');
   document.body.style.overflow='hidden';
   const imgEl=document.getElementById('modal-img');
-  if(p.image_url){
-    imgEl.innerHTML=`<img src="${p.image_url}" alt="" style="width:100%;height:100%;object-fit:cover" onerror="this.parentElement.innerHTML='<span style=font-size:36px>${catEmoji(p.category)}</span>'">`;
-  } else {
-    imgEl.innerHTML=`<span style="font-size:36px">${catEmoji(p.category)}</span>`;
-  }
+  imgEl.innerHTML=p.image_url?`<img src="${p.image_url}" alt="" style="width:100%;height:100%;object-fit:cover">`:`<span style="font-size:36px">${catEmoji(p.category)}</span>`;
   document.getElementById('modal-name').textContent=p.name;
-  document.getElementById('modal-tags').innerHTML=
-    `<span class="modal-tag">📅 ${p.age_stage||'通用'}</span>${p.category?`<span class="modal-tag">${p.category}</span>`:''}`;
+  document.getElementById('modal-tags').innerHTML=`<span class="modal-tag">📅 ${p.age_stage||'通用'}</span>${p.category?`<span class="modal-tag">${p.category}</span>`:''}`;
+  const pls=p.product_platforms||[];
   const list=document.getElementById('compare-list');
-  const platforms=p.product_platforms||[];
-  if(!platforms.length){
-    list.innerHTML=`<div class="no-data-msg">🔍 此商品暫無比價資料<br><span style="font-size:12px;color:var(--soft)">我們正在努力新增更多平台 💕</span></div>`;
-    return;
-  }
-
-  const withPrice=platforms.filter(d=>d.price>0);
-  const minPrice=withPrice.length?Math.min(...withPrice.map(d=>d.price)):0;
-  list.innerHTML=platforms.map(d=>{
-    const cheap=d.price>0&&d.price===minPrice;
-    const label=PLATFORM_LABEL[d.platform]||d.platform||d.shop_name||'購買連結';
+  if(!pls.length){list.innerHTML='<div class="no-data-msg">🔍 此商品暫無比價資料</div>';return;}
+  const withP=pls.filter(d=>d.price>0);
+  const minP=withP.length?Math.min(...withP.map(d=>d.price)):0;
+  list.innerHTML=pls.sort((a,b)=>(a.price||0)-(b.price||0)).map(d=>{
+    const cheap=d.price>0&&d.price===minP;
+    const label=PLATFORM_LABEL[d.platform]||d.platform||'購買連結';
     const priceStr=d.price>0?`NT$ ${d.price.toLocaleString()}`:'洽詢';
-    const linkBtn=d.shop_url
-      ?`<a class="btn-goto" href="${d.shop_url}" target="_blank" rel="noopener">前往購買 →</a>`
-      :`<span class="btn-goto" style="opacity:.4;cursor:default">連結未提供</span>`;
+    const link=d.shop_url?`<a class="btn-goto" href="${d.shop_url}" target="_blank" rel="noopener">前往購買 →</a>`:`<span class="btn-goto" style="opacity:.4;cursor:default">連結未提供</span>`;
     return`<div class="compare-row${cheap?' cheapest':''}">
       <div class="compare-platform">${label}</div>
       <div class="compare-brand">${d.brand||'-'}</div>
       ${cheap?'<span class="cheapest-tag">🎉 最低價</span>':''}
       <div class="compare-price">${priceStr}</div>
-      ${linkBtn}
+      ${link}
     </div>`;
   }).join('');
+}
+
+// ===== 玩具推薦 =====
+function toggleChip(el,group){
+  if(group==='type'){el.classList.toggle('selected');}
+  else{
+    el.closest('.chip-group').querySelectorAll('.chip').forEach(c=>c.classList.remove('selected'));
+    el.classList.add('selected');
+    if(group==='gift')document.getElementById('budget-area').style.display=el.textContent.includes('送禮')?'block':'none';
+  }
+}
+function searchToys(){
+  const ageEl=document.querySelector('#age-chips .chip.selected');
+  const typeEls=[...document.querySelectorAll('#type-chips .chip.selected')];
+  const giftEl=document.querySelector('#gift-chips .chip.selected');
+  const budgetEl=document.querySelector('#budget-chips .chip.selected');
+  const age=ageEl?.textContent.trim();
+  const types=typeEls.map(c=>c.textContent.trim());
+  const isGift=giftEl?.textContent.includes('送禮');
+  const budget=budgetEl?.textContent.trim()||'';
+  let results=[...TOY_DATA];
+  if(age)results=results.filter(t=>t.ages.includes(age));
+  if(types.length)results=results.filter(t=>t.types.some(tp=>types.includes(tp)));
+  if(isGift){
+    results=results.filter(t=>t.gift);
+    if(budget){results=results.filter(t=>{
+      const minP=Math.min(...t.platforms.map(p=>p.price));
+      if(budget.includes('500 以下'))return minP<500;
+      if(budget.includes('500 ~ 1,000'))return minP>=500&&minP<=1000;
+      if(budget.includes('1,000 ~ 2,000'))return minP>1000&&minP<=2000;
+      if(budget.includes('2,000 以上'))return minP>2000;
+      return true;
+    });}
+  }
+  const el=document.getElementById('toy-results');
+  if(!results.length){el.innerHTML='<div class="empty"><div class="empty-icon">🔍</div><p>找不到符合條件的玩具，試試放寬條件！</p></div>';return;}
+  el.innerHTML='<div class="toy-results-grid">'+results.map(renderToyCard).join('')+'</div>';
+  el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function renderToyCard(toy){
+  const q=toy.social;
+  const minP=Math.min(...toy.platforms.map(p=>p.price));
+  const platforms=toy.platforms.map(p=>`<a class="btn-buy-toy ${p.price===minP?'btn-buy-primary':'btn-buy-outline'}" href="${p.url}" target="_blank" rel="noopener">${p.name} NT$${p.price.toLocaleString()}${p.price===minP?' 🏷️':''}</a>`).join('');
+  return`<div class="toy-result-card">
+    <div class="toy-name">${toy.name}${toy.gift?'<span class="gift-star">🎁 可送禮</span>':''}</div>
+    <div class="toy-desc">${toy.desc}</div>
+    <div class="toy-badges">
+      ${toy.ages.map(a=>`<span class="toy-badge toy-badge-age">👶 ${a}</span>`).join('')}
+      ${toy.types.map(t=>`<span class="toy-badge toy-badge-type">${t}</span>`).join('')}
+    </div>
+    <div style="font-size:12px;font-weight:800;color:var(--soft);margin-bottom:8px">🛒 購買連結</div>
+    <div class="toy-buy-row">${platforms}</div>
+    <div class="social-row">
+      <span class="social-label">💬 看看媽媽怎麼說：</span>
+      <a class="btn-social btn-dcard" href="https://www.dcard.tw/f/baby/search?q=${q}" target="_blank" rel="noopener">Dcard</a>
+      <a class="btn-social btn-threads" href="https://www.threads.net/search?q=${q}" target="_blank" rel="noopener">Threads</a>
+      <a class="btn-social btn-ig" href="https://www.instagram.com/explore/search/keyword/?q=${q}" target="_blank" rel="noopener">Instagram</a>
+      <a class="btn-social btn-fb" href="https://www.facebook.com/search/posts/?q=${q}" target="_blank" rel="noopener">Facebook</a>
+    </div>
+  </div>`;
 }
 
 function closeModal(e){if(e.target===document.getElementById('modal-overlay'))closeModalBtn();}
