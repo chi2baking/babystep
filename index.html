@@ -189,6 +189,34 @@
   .script-situation{font-size:11px;font-weight:800;color:var(--purple);margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em;}
   .script-reply{font-size:13px;font-weight:600;color:var(--mid);line-height:1.6;}
 
+  /* 問答搜尋區 */
+  .qa-wrap{max-width:780px;margin:0 auto;}
+  .qa-search-row{display:flex;gap:12px;margin-bottom:20px;}
+  .qa-input{flex:1;padding:16px 24px;border:2px solid var(--purple-mid);border-radius:30px;font-size:15px;font-family:'Nunito',sans-serif;font-weight:700;outline:none;transition:border-color .2s;}
+  .qa-input:focus{border-color:var(--purple);}
+  .qa-btn{padding:16px 28px;background:var(--purple);color:white;border:none;border-radius:30px;font-size:15px;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;white-space:nowrap;transition:opacity .2s;}
+  .qa-btn:hover{opacity:.85;}
+  .qa-quick-label{font-size:12px;font-weight:800;color:var(--mid);margin-bottom:10px;letter-spacing:.05em;}
+  .qa-quick-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;}
+  .qa-chip{padding:8px 16px;border:1.5px solid var(--purple-mid);border-radius:30px;font-size:13px;font-weight:700;color:var(--purple);cursor:pointer;transition:all .2s;background:white;}
+  .qa-chip:hover{background:var(--purple);color:white;border-color:var(--purple);}
+  #qa-results{margin-top:8px;}
+  .qa-topic-block{margin-bottom:32px;}
+  .qa-topic-head{font-size:17px;font-weight:900;color:var(--dark);font-family:'Playfair Display',serif;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+  .qa-links-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;}
+  .qa-link-card{border-radius:16px;padding:16px 18px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:6px;transition:all .2s;border:1.5px solid var(--border);background:white;}
+  .qa-link-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(168,129,194,.18);}
+  .qa-link-card.official{border-color:#2ecc71;background:#f0fff4;}
+  .qa-link-card.article{border-color:var(--purple-mid);background:var(--purple-pale);}
+  .qa-link-card.community{border-color:#3498db;background:#ebf5fb;}
+  .qa-link-card.shop{border-color:#f39c12;background:#fef9e7;}
+  .qa-link-card.video{border-color:#e74c3c;background:#fff5f5;}
+  .qa-link-source{font-size:11px;font-weight:800;opacity:.75;}
+  .qa-link-title{font-size:13px;font-weight:800;color:var(--dark);line-height:1.45;}
+  .qa-link-arrow{font-size:12px;color:var(--mid);margin-top:2px;}
+  .qa-no-match{text-align:center;padding:40px 20px;color:var(--mid);font-weight:700;}
+  .qa-generic-title{font-size:15px;font-weight:900;color:var(--dark);margin-bottom:12px;}
+
   /* 親子天下文章區 */
   .article-section-title{font-size:22px;font-weight:900;color:var(--dark);font-family:'Playfair Display',serif;margin:40px 0 6px;display:flex;align-items:center;gap:10px;}
   .article-section-title span{font-size:13px;font-weight:700;color:var(--purple);background:var(--purple-pale);border:1.5px solid var(--purple-mid);border-radius:20px;padding:3px 12px;}
@@ -292,6 +320,7 @@
     <button class="nav-tab active" onclick="showPage('home',this)">🏠 首頁</button>
     <button class="nav-tab" onclick="showPage('shop',this)">🛍️ 商城</button>
     <button class="nav-tab" onclick="showPage('toys',this)">🧸 玩具推薦</button>
+    <button class="nav-tab" onclick="showPage('qa',this)">🔍 問答搜尋</button>
     <button class="nav-tab" onclick="showPage('secondhand',this)">♻️ 換物</button>
     <button class="nav-tab" onclick="showPage('mama',this)">💜 支援</button>
   </div>
@@ -429,6 +458,40 @@
     <div class="section-title" style="margin-bottom:24px;">🐻 目前刊登中</div>
     <div class="secondhand-grid" id="secondhand-list"><div class="loading"><div class="spinner"></div><p>載入中... 🐻</p></div></div>
   </div>
+</div>
+
+<!-- QA 問答搜尋 -->
+<div class="page" id="page-qa">
+  <div class="section-alt-wrap"><div class="section">
+    <div class="section-header">
+      <div class="section-title">🔍 育兒 <em>問答搜尋</em></div>
+      <p style="font-size:15px;font-weight:600;color:var(--mid);margin-top:6px">輸入問題或關鍵字，直接連結到最相關的網站資源 💕</p>
+    </div>
+    <div class="qa-wrap">
+      <div class="qa-search-row">
+        <input class="qa-input" id="qa-input" type="text" placeholder="例如：寶寶發燒、副食品怎麼開始、推車推薦…" onkeydown="if(event.key==='Enter')searchQA()" />
+        <button class="qa-btn" onclick="searchQA()">🔍 搜尋</button>
+      </div>
+      <div class="qa-quick-label">💡 熱門問題快速搜尋</div>
+      <div class="qa-quick-row">
+        <div class="qa-chip" onclick="quickSearchQA('母乳追奶')">🤱 母乳追奶</div>
+        <div class="qa-chip" onclick="quickSearchQA('寶寶發燒')">🌡️ 寶寶發燒</div>
+        <div class="qa-chip" onclick="quickSearchQA('副食品')">🥕 副食品</div>
+        <div class="qa-chip" onclick="quickSearchQA('不睡覺哄睡')">😴 不睡覺哄睡</div>
+        <div class="qa-chip" onclick="quickSearchQA('疫苗時程')">💉 疫苗時程</div>
+        <div class="qa-chip" onclick="quickSearchQA('過敏皮膚炎')">🌿 過敏皮膚炎</div>
+        <div class="qa-chip" onclick="quickSearchQA('寶寶便秘腹瀉')">💩 便秘腹瀉</div>
+        <div class="qa-chip" onclick="quickSearchQA('說話語言發展')">💬 語言發展</div>
+        <div class="qa-chip" onclick="quickSearchQA('長牙固齒')">🦷 長牙固齒</div>
+        <div class="qa-chip" onclick="quickSearchQA('推車推薦')">🛒 推車推薦</div>
+        <div class="qa-chip" onclick="quickSearchQA('產後憂鬱情緒')">💜 產後情緒</div>
+        <div class="qa-chip" onclick="quickSearchQA('育兒補助津貼')">💰 育兒補助</div>
+        <div class="qa-chip" onclick="quickSearchQA('戒尿布如廁訓練')">🚽 如廁訓練</div>
+        <div class="qa-chip" onclick="quickSearchQA('保母托嬰')">🏠 保母托嬰</div>
+      </div>
+      <div id="qa-results"></div>
+    </div>
+  </div></div>
 </div>
 
 <!-- MAMA -->
@@ -626,6 +689,206 @@
 <div class="toast" id="toast"></div>
 
 <script>
+// ===== 問答搜尋資料庫 =====
+const QA_DATA=[
+  {id:'breastfeed',keywords:['母乳','哺乳','追奶','開奶','斷奶','乳腺','乳頭','吸乳器','集乳','脹奶','塞奶'],
+   title:'🤱 母乳哺育',links:[
+    {t:'母乳哺育常見問題Q&A',s:'親子天下',c:'article',u:'https://www.parenting.com.tw/search?q=母乳哺育'},
+    {t:'追奶食物與方法',s:'媽咪愛',c:'article',u:'https://www.mamilove.com.tw/search?keyword=追奶'},
+    {t:'台灣母乳協會官方資源',s:'台灣母乳協會',c:'official',u:'https://www.breastfeeding.org.tw/'},
+    {t:'哺乳心得討論串',s:'Dcard 媽媽板',c:'community',u:'https://www.dcard.tw/search?q=追奶哺乳'},
+    {t:'吸乳器比較與選購',s:'媽咪愛',c:'shop',u:'https://www.mamilove.com.tw/search?keyword=吸乳器'},
+    {t:'哺乳枕怎麼選',s:'卡多摩',c:'shop',u:'https://www.akazaru.com.tw/search/?q=哺乳枕'},
+    {t:'母乳哺育影片教學',s:'YouTube',c:'video',u:'https://www.youtube.com/results?search_query=母乳哺育+新手媽媽'},
+  ]},
+  {id:'sleep',keywords:['睡眠','睡覺','夜醒','哄睡','睡訓','不睡','睡著','安撫入睡','睡過夜','夜奶','作息'],
+   title:'😴 嬰兒睡眠',links:[
+    {t:'嬰兒睡眠訓練方法比較',s:'親子天下',c:'article',u:'https://www.parenting.com.tw/search?q=嬰兒睡眠訓練'},
+    {t:'0-3歲作息建立指南',s:'親子天下',c:'article',u:'https://www.parenting.com.tw/search?q=嬰兒作息'},
+    {t:'哄睡技巧討論',s:'Dcard 媽媽板',c:'community',u:'https://www.dcard.tw/search?q=嬰兒哄睡'},
+    {t:'費伯法 vs 親密育兒',s:'PTT BabyMother',c:'community',u:'https://www.ptt.cc/bbs/BabyMother/search?q=費伯法'},
+    {t:'安撫奶嘴選購',s:'媽咪愛',c:'shop',u:'https://www.mamilove.com.tw/search?keyword=安撫奶嘴'},
+    {t:'嬰兒哄睡技巧影片',s:'YouTube',c:'video',u:'https://www.youtube.com/results?search_query=嬰兒哄睡技巧'},
+  ]},
+  {id:'food',keywords:['副食品','離乳食','開始吃','泥狀','手指食物','米精','粥','副食','BLW'],
+   title:'🥕 副食品添加',links:[
+    {t:'副食品添加時機與順序',s:'親子天下',c:'article',u:'https://www.parenting.com.tw/search?q=副食品'},
+    {t:'副食品食材禁忌整理',s:'媽咪愛雜誌',c:'article',u:'https://www.mamilove.com.tw/search?keyword=副食品食材'},
+    {t:'副食品食譜分享',s:'Dcard',c:'community',u:'https://www.dcard.tw/search?q=副食品食譜'},
+    {t:'BLW手指食物討論',s:'PTT BabyMother',c:'community',u:'https://www.ptt.cc/bbs/BabyMother/search?q=BLW'},
+    {t:'副食品調理器材選購',s:'媽咪愛',c:'shop',u:'https://www.mamilove.com.tw/search?keyword=副食品調理'},
+    {t:'副食品高腳椅推薦',s:'卡多摩',c:'shop',u:'https://www.akazaru.com.tw/search/?q=高腳椅'},
+    {t:'副食品製作影片教學',s:'YouTube',c:'video',u:'https://www.youtube.com/results?search_query=嬰兒副食品食譜'},
+  ]},
+  {id:'fever',keywords:['發燒','退燒','體溫','高燒','發熱','看醫生','急診','感冒','流鼻水','咳嗽','生病'],
+   title:'🌡️ 寶寶發燒生病',links:[
+    {t:'幼兒發燒：何時看醫生？',s:'親子天下',c:'article',u:'https://www.parenting.com.tw/search?q=幼兒發燒'},
+    {t:'退燒藥使用正確方式',s:'衛福部',c:'official',u:'https://www.fda.gov.tw/TC/index.aspx'},
+    {t:'發燒緊急就醫判斷',s:'台灣兒科醫學會',c:'official',u:'https://www.pediatr.org.tw/'},
+    {t:'感冒症狀討論',s:'Dcard 媽媽板',c:'community',u:'https://www.dcard.tw/search?q=寶寶感冒'},
+    {t:'幼兒用體溫計選購',s:'媽咪愛',c:'shop',u:'https://www.mamilove.com.tw/search?keyword=體溫計'},
+  ]},
+  {id:'vaccine',keywords:['疫苗','預防針','接種','公費疫苗','自費疫苗','打疫苗','副作用'],
+   title:'💉 疫苗接種',links:[
+    {t:'嬰兒疫苗完整時程表',s:'親子天下',c:'article',u:'https://www.parenting.com.tw/search?q=嬰兒疫苗'},
+    {t:'公費 vs 自費疫苗說明',s:'衛福部疾管署',c:'official',u:'https://www.cdc.gov.tw/'},
+    {t:'台灣兒科醫學會疫苗建議',s:'台灣兒科醫學會',c:'official',u:'https://www.pediatr.org.tw/'},
+    {t:'疫苗副作用討論',s:'Dcard 媽媽板',c:'community',u:'https://www.dcard.tw/search?q=嬰兒疫苗副作用'},
+    {t:'疫苗時程影片說明',s:'YouTube',c:'video',u:'https://www.youtube.com/results?search_query=嬰兒疫苗時程+台灣'},
+  ]},
+  {id:'allergy',keywords:['過敏','異位性','皮膚炎','濕疹','蕁麻疹','食物過敏','花粉','塵螨','癢'],
+   title:'🌿 過敏與皮膚',links:[
+    {t:'嬰幼兒過敏預防照護',s:'親子天下',c:'article',u:'https://www.parenting.com.tw/search?q=嬰兒過敏'},
+    {t:'異位性皮膚炎照護指南',s:'台灣皮膚科醫學會',c:'official',u:'https://www.dermatologist.org.tw/'},
+    {t:'嬰兒乳液護膚品推薦',s:'媽咪愛',c:'shop',u:'https://www.mamilove.com.tw/search?keyword=嬰兒乳液'},
+    {t:'過敏治療討論',s:'Dcard 媽媽板',c:'community',u:'https://www.dcard.tw/search?q=嬰兒異位性皮膚炎'},
+    {t:'防蟎寢具推薦',s:'媽咪愛',c:'shop',u:'https://www.mamilove.com.tw/search?keyword=防蟎'},
+    {t:'過敏皮膚炎照護影片',s:'YouTube',c:'video',u:'https://www.youtube.com/results?search_query=嬰兒異位性皮膚炎+照護'},
+  ]},
+  {id:'gut',keywords:['腹瀉','便秘','嘔吐','腸絞痛','拉肚子','大便','便便','腸胃','消化','漲氣','脹氣'],
+   title:'💩 腸胃問題',links:[
+    {t:'嬰兒腸絞痛與腹瀉處理',s:'親子天下',c:'article',u:'https://www.parenting.com.tw/search?q=嬰兒腸胃'},
+    {t:'寶寶便便顏色判斷圖',s:'台灣兒科醫學會',c:'official',u:'https://www.pediatr.org.tw/'},
+    {t:'腸絞痛解決方法討論',s:'Dcard 媽媽板',c:'community',u:'https://www.dcard.tw/search?q=嬰兒腸絞痛'},
+    {t:'防脹氣奶瓶推薦',s:'媽咪愛',c:'shop',u:'https://www.mamilove.com.tw/search?keyword=防脹氣+奶瓶'},
+    {t:'益生菌選購',s:'卡多摩',c:'shop',u:'https://www.akazaru.com.tw/search/?q=益生菌'},
+  ]},
+  {id:'language',keywords:['說話','語言','開口','疊字','不說話','詞彙','語言遲緩','牙牙學語','發音'],
+   title:'💬 語言發展',links:[
+    {t:'寶寶語言發展與親子共讀',s:'親子天下',c:'article',u:'https://www.parenting.com.tw/search?q=寶寶語言發展'},
+    {t:'幾個月才說話？里程碑整理',s:'親子天下',c:'article',u:'https://www.parenting.com.tw/search?q=嬰兒說話+里程碑'},
+    {t:'語言遲緩評估資源',s:'衛福部',c:'official',u:'https://www.mohw.gov.tw/'},
+    {t:'語言發展討論',s:'Dcard 媽媽板',c:'community',u:'https://www.dcard.tw/search?q=寶寶說話語言'},
+    {t:'親子共讀繪本推薦',s:'媽咪愛',c:'shop',u:'https://www.mamilove.com.tw/search?keyword=親子繪本'},
+    {t:'促進語言發展活動影片',s:'YouTube',c:'video',u:'https://www.youtube.com/results?search_query=促進嬰幼兒語言發展'},
+  ]},
+  {id:'motor',keywords:['爬行','走路','站立','大肌肉','翻身','坐','平衡','學步','腳步','爬行'],
+   title:'🏃 動作發展',links:[
+    {t:'0-12個月寶寶發展里程碑',s:'親子天下',c:'article',u:'https://www.parenting.com.tw/search?q=嬰兒發展里程碑'},
+    {t:'爬行訓練方法',s:'親子天下',c:'article',u:'https://www.parenting.com.tw/search?q=嬰兒爬行訓練'},
+    {t:'發展遲緩評估資源',s:'衛福部',c:'official',u:'https://www.sfaa.gov.tw/'},
+    {t:'學步車安不安全？討論',s:'Dcard 媽媽板',c:'community',u:'https://www.dcard.tw/search?q=寶寶學走路'},
+    {t:'爬行墊推薦',s:'媽咪愛',c:'shop',u:'https://www.mamilove.com.tw/search?keyword=嬰兒爬行墊'},
+    {t:'嬰兒大動作發展影片',s:'YouTube',c:'video',u:'https://www.youtube.com/results?search_query=嬰兒爬行走路訓練'},
+  ]},
+  {id:'emotion',keywords:['哭','情緒','發脾氣','鬧脾氣','安撫','哭鬧','焦慮','黏人','分離焦慮'],
+   title:'😭 情緒與哭鬧',links:[
+    {t:'幼兒情緒發展與處理技巧',s:'親子天下',c:'article',u:'https://www.parenting.com.tw/search?q=幼兒情緒'},
+    {t:'分離焦慮怎麼辦',s:'親子天下',c:'article',u:'https://www.parenting.com.tw/search?q=嬰兒分離焦慮'},
+    {t:'寶寶哭鬧解決方法',s:'Dcard 媽媽板',c:'community',u:'https://www.dcard.tw/search?q=寶寶哭鬧安撫'},
+    {t:'安撫玩偶推薦',s:'卡多摩',c:'shop',u:'https://www.akazaru.com.tw/search/?q=安撫玩偶'},
+    {t:'安撫嬰兒哭鬧技巧',s:'YouTube',c:'video',u:'https://www.youtube.com/results?search_query=嬰兒哭鬧安撫方法'},
+  ]},
+  {id:'postpartum',keywords:['產後憂鬱','情緒低落','心情','焦慮','壓力','沮喪','哭','崩潰','產後'],
+   title:'💜 產後情緒支持',links:[
+    {t:'產後憂鬱症認識與求助',s:'親子天下',c:'article',u:'https://www.parenting.com.tw/search?q=產後憂鬱'},
+    {t:'衛福部安心專線 1925',s:'衛福部',c:'official',u:'tel:1925'},
+    {t:'產後心理諮商資源',s:'衛福部',c:'official',u:'https://www.mohw.gov.tw/'},
+    {t:'產後情緒心情討論',s:'Dcard 媽媽板',c:'community',u:'https://www.dcard.tw/search?q=產後憂鬱心情'},
+    {t:'媽媽支持社群',s:'PTT BabyMother',c:'community',u:'https://www.ptt.cc/bbs/BabyMother/index.html'},
+    {t:'產後情緒自我照顧影片',s:'YouTube',c:'video',u:'https://www.youtube.com/results?search_query=產後情緒照顧媽媽'},
+  ]},
+  {id:'stroller',keywords:['推車','嬰兒車','輕量推車','折疊推車','汽座','安全座椅','提籃','背巾','出行'],
+   title:'🛒 推車汽座選購',links:[
+    {t:'嬰兒推車選購重點',s:'親子天下',c:'article',u:'https://www.parenting.com.tw/search?q=嬰兒推車選購'},
+    {t:'汽車安全座椅選購指南',s:'道安委員會',c:'official',u:'https://www.road.org.tw/'},
+    {t:'推車比較心得討論',s:'Dcard 媽媽板',c:'community',u:'https://www.dcard.tw/search?q=嬰兒推車推薦'},
+    {t:'推車 PTT 開箱整理',s:'PTT BabyMother',c:'community',u:'https://www.ptt.cc/bbs/BabyMother/search?q=推車'},
+    {t:'推車全系列選購',s:'媽咪愛',c:'shop',u:'https://www.mamilove.com.tw/search?keyword=嬰兒推車'},
+    {t:'推車開箱比較影片',s:'YouTube',c:'video',u:'https://www.youtube.com/results?search_query=嬰兒推車推薦+台灣'},
+  ]},
+  {id:'subsidy',keywords:['補助','津貼','育兒假','托育補助','育嬰留停','生育補助','政府補助','申請'],
+   title:'💰 育兒補助申請',links:[
+    {t:'育兒補助懶人包',s:'親子天下',c:'article',u:'https://www.parenting.com.tw/search?q=育兒補助'},
+    {t:'育兒津貼申請辦法',s:'衛福部社家署',c:'official',u:'https://www.sfaa.gov.tw/SFAA/Pages/List.aspx?nodeid=994'},
+    {t:'育嬰留停薪資補助',s:'勞動部',c:'official',u:'https://www.mol.gov.tw/'},
+    {t:'生育補助各縣市整理',s:'Dcard',c:'community',u:'https://www.dcard.tw/search?q=育兒補助申請'},
+    {t:'育兒補助申請流程影片',s:'YouTube',c:'video',u:'https://www.youtube.com/results?search_query=台灣育兒補助申請'},
+  ]},
+  {id:'potty',keywords:['如廁','馬桶','尿布','戒尿布','大小便','訓練','廁所','如廁訓練'],
+   title:'🚽 如廁訓練',links:[
+    {t:'幼兒如廁訓練完整攻略',s:'親子天下',c:'article',u:'https://www.parenting.com.tw/search?q=幼兒如廁訓練'},
+    {t:'戒尿布時機判斷',s:'親子天下',c:'article',u:'https://www.parenting.com.tw/search?q=戒尿布'},
+    {t:'如廁訓練心得分享',s:'Dcard 媽媽板',c:'community',u:'https://www.dcard.tw/search?q=如廁訓練'},
+    {t:'兒童馬桶坐墊選購',s:'媽咪愛',c:'shop',u:'https://www.mamilove.com.tw/search?keyword=兒童馬桶'},
+    {t:'如廁訓練影片教學',s:'YouTube',c:'video',u:'https://www.youtube.com/results?search_query=幼兒如廁訓練方法'},
+  ]},
+  {id:'teeth',keywords:['長牙','出牙','牙膠','刷牙','牙齒','磨牙','固齒器','出牙'],
+   title:'🦷 長牙與口腔',links:[
+    {t:'嬰兒長牙症狀與照護',s:'親子天下',c:'article',u:'https://www.parenting.com.tw/search?q=嬰兒長牙'},
+    {t:'寶寶刷牙怎麼開始',s:'親子天下',c:'article',u:'https://www.parenting.com.tw/search?q=嬰兒刷牙'},
+    {t:'口腔清潔討論',s:'Dcard 媽媽板',c:'community',u:'https://www.dcard.tw/search?q=嬰兒長牙'},
+    {t:'固齒器牙膠選購',s:'媽咪愛',c:'shop',u:'https://www.mamilove.com.tw/search?keyword=固齒器'},
+    {t:'嬰兒指套牙刷推薦',s:'媽咪愛',c:'shop',u:'https://www.mamilove.com.tw/search?keyword=嬰兒牙刷'},
+  ]},
+  {id:'childcare',keywords:['保母','托嬰','托育','幼兒園','照顧','送托','選擇','保育員'],
+   title:'🏠 保母托育選擇',links:[
+    {t:'保母 vs 托嬰中心怎麼選',s:'親子天下',c:'article',u:'https://www.parenting.com.tw/search?q=保母托嬰選擇'},
+    {t:'優質保母查詢系統',s:'衛福部社家署',c:'official',u:'https://cwisweb.sfaa.gov.tw/SFAA/Pages/List.aspx?nodeid=162'},
+    {t:'公共托育查詢',s:'衛福部社家署',c:'official',u:'https://www.sfaa.gov.tw/'},
+    {t:'托嬰心得分享',s:'Dcard 媽媽板',c:'community',u:'https://www.dcard.tw/search?q=托嬰中心推薦'},
+    {t:'保母選擇討論',s:'PTT BabyMother',c:'community',u:'https://www.ptt.cc/bbs/BabyMother/search?q=保母'},
+    {t:'托嬰選擇影片攻略',s:'YouTube',c:'video',u:'https://www.youtube.com/results?search_query=台灣托嬰保母選擇'},
+  ]},
+  {id:'parenting',keywords:['教養','管教','打罵','正向教養','說不','界限','規矩','規則'],
+   title:'📚 教養與管教',links:[
+    {t:'正向教養：不打不罵管教法',s:'親子天下',c:'article',u:'https://www.parenting.com.tw/search?q=正向教養'},
+    {t:'為孩子設定界限的方法',s:'親子天下',c:'article',u:'https://www.parenting.com.tw/search?q=幼兒界限設定'},
+    {t:'教養觀念討論',s:'Dcard 媽媽板',c:'community',u:'https://www.dcard.tw/search?q=幼兒教養管教'},
+    {t:'親子教養影片',s:'YouTube',c:'video',u:'https://www.youtube.com/results?search_query=正向教養幼兒台灣'},
+  ]},
+  {id:'screen',keywords:['3C','手機','平板','電視','螢幕','限制','使用時間'],
+   title:'📱 3C 使用規範',links:[
+    {t:'幼兒使用3C正確方式',s:'親子天下',c:'article',u:'https://www.parenting.com.tw/search?q=幼兒3C使用'},
+    {t:'台灣兒科醫學會3C建議',s:'台灣兒科醫學會',c:'official',u:'https://www.pediatr.org.tw/'},
+    {t:'3C管理心得',s:'Dcard 媽媽板',c:'community',u:'https://www.dcard.tw/search?q=幼兒3C管理'},
+  ]},
+];
+
+function quickSearchQA(keyword){
+  document.getElementById('qa-input').value=keyword;
+  searchQA();
+}
+
+function searchQA(){
+  const q=document.getElementById('qa-input').value.trim();
+  if(!q){document.getElementById('qa-results').innerHTML='<p class="qa-no-match">請輸入問題或關鍵字 😊</p>';return;}
+  const words=q.split(/[\s,，、]+/);
+  const scored=QA_DATA.map(topic=>{
+    let score=0;
+    words.forEach(w=>{if(!w)return;topic.keywords.forEach(k=>{if(k.includes(w)||w.includes(k))score++;});});
+    return{...topic,score};
+  }).filter(t=>t.score>0).sort((a,b)=>b.score-a.score);
+
+  const el=document.getElementById('qa-results');
+  if(!scored.length){
+    const enc=encodeURIComponent(q);
+    el.innerHTML=`<p class="qa-no-match">找不到完全符合的主題，試試以下直接搜尋 🔍</p>
+    <div class="qa-generic-title">🌐 在各平台搜尋「${q}」</div>
+    <div class="qa-links-grid">
+      <a class="qa-link-card article" href="https://www.parenting.com.tw/search?q=${enc}" target="_blank" rel="noopener"><div class="qa-link-source">文章</div><div class="qa-link-title">親子天下：${q}</div><div class="qa-link-arrow">→ 前往搜尋</div></a>
+      <a class="qa-link-card community" href="https://www.dcard.tw/search?q=${enc}" target="_blank" rel="noopener"><div class="qa-link-source">社群</div><div class="qa-link-title">Dcard 媽媽板：${q}</div><div class="qa-link-arrow">→ 前往搜尋</div></a>
+      <a class="qa-link-card community" href="https://www.ptt.cc/bbs/BabyMother/search?q=${enc}" target="_blank" rel="noopener"><div class="qa-link-source">社群</div><div class="qa-link-title">PTT BabyMother：${q}</div><div class="qa-link-arrow">→ 前往搜尋</div></a>
+      <a class="qa-link-card video" href="https://www.youtube.com/results?search_query=${enc}+育兒" target="_blank" rel="noopener"><div class="qa-link-source">影片</div><div class="qa-link-title">YouTube：${q}+育兒</div><div class="qa-link-arrow">→ 前往搜尋</div></a>
+    </div>`;
+    return;
+  }
+
+  const typeLabel={official:'官方資源',article:'文章',community:'社群',shop:'購物',video:'影片'};
+  el.innerHTML=scored.slice(0,3).map(topic=>`
+    <div class="qa-topic-block">
+      <div class="qa-topic-head">${topic.title}</div>
+      <div class="qa-links-grid">
+        ${topic.links.map(l=>`
+          <a class="qa-link-card ${l.c}" href="${l.u}" target="_blank" rel="noopener">
+            <div class="qa-link-source">${typeLabel[l.c]||l.c} · ${l.s}</div>
+            <div class="qa-link-title">${l.t}</div>
+            <div class="qa-link-arrow">→ 前往</div>
+          </a>`).join('')}
+      </div>
+    </div>`).join('');
+}
+
 const SUPABASE_URL='https://dygtrmklszbqvlmgrihj.supabase.co';
 const SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR5Z3RybWtsc3picXZsbWdyaWhqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc5NTIxNDUsImV4cCI6MjA5MzUyODE0NX0.cHJ7uSkSF5YzXCTElE41_YoyTCJpccSAcgS6OWJ77uI';
 const{createClient}=supabase;
