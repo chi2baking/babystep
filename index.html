@@ -189,6 +189,25 @@
   .script-situation{font-size:11px;font-weight:800;color:var(--purple);margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em;}
   .script-reply{font-size:13px;font-weight:600;color:var(--mid);line-height:1.6;}
 
+  /* 親子天下文章區 */
+  .article-section-title{font-size:22px;font-weight:900;color:var(--dark);font-family:'Playfair Display',serif;margin:40px 0 6px;display:flex;align-items:center;gap:10px;}
+  .article-section-title span{font-size:13px;font-weight:700;color:var(--purple);background:var(--purple-pale);border:1.5px solid var(--purple-mid);border-radius:20px;padding:3px 12px;}
+  .article-section-desc{font-size:14px;color:var(--mid);font-weight:600;margin-bottom:20px;line-height:1.7;}
+  .article-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-bottom:32px;}
+  .article-card{background:white;border:1.5px solid var(--border);border-radius:18px;padding:22px;transition:all .2s;display:flex;flex-direction:column;gap:10px;}
+  .article-card:hover{box-shadow:0 12px 32px rgba(168,129,194,.15);transform:translateY(-4px);border-color:var(--purple-light);}
+  .article-tag{display:inline-block;font-size:11px;font-weight:800;color:var(--purple);background:var(--purple-pale);border-radius:20px;padding:3px 10px;width:fit-content;}
+  .article-card-title{font-size:15px;font-weight:900;color:var(--dark);font-family:'Playfair Display',serif;line-height:1.4;}
+  .article-card-desc{font-size:13px;font-weight:600;color:var(--mid);line-height:1.65;flex:1;}
+  .btn-article{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:30px;font-size:13px;font-weight:800;text-decoration:none;transition:all .2s;margin-top:4px;border:1.5px solid var(--purple-mid);color:var(--purple);background:var(--purple-pale);}
+  .btn-article:hover{background:var(--purple);color:white;border-color:var(--purple);}
+  .resource-row{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:32px;}
+  .resource-chip{display:flex;align-items:center;gap:8px;padding:12px 20px;border-radius:30px;font-size:13px;font-weight:800;text-decoration:none;transition:all .2s;border:1.5px solid var(--border);background:white;color:var(--dark);}
+  .resource-chip:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(168,129,194,.2);}
+  .resource-chip.hotline{border-color:#e74c3c;color:#e74c3c;background:#fff5f5;}
+  .resource-chip.gov{border-color:#2ecc71;color:#27ae60;background:#f0fff4;}
+  .resource-chip.community{border-color:var(--purple-mid);color:var(--purple);background:var(--purple-pale);}
+
   .toast{position:fixed;bottom:28px;right:28px;z-index:999;padding:16px 28px;border-radius:16px;font-size:14px;font-weight:800;transform:translateY(80px);opacity:0;transition:all .3s;box-shadow:0 8px 32px rgba(0,0,0,.15);font-family:'Nunito',sans-serif;}
   .toast.show{transform:translateY(0);opacity:1;}
   .toast.success{background:linear-gradient(135deg,#2E7D32,#43A047);color:white;}
@@ -419,34 +438,168 @@
       <h2>💜 媽媽支援區</h2>
       <p>不只採購，BabyStep 也陪你面對育兒路上的每個挑戰 🐻<br>不教你對罵，給你有底氣的溫暖智慧 💕</p>
     </div>
+
+    <!-- 緊急資源快捷列 -->
+    <div class="article-section-title">🆘 緊急求助資源</div>
+    <div class="resource-row">
+      <a class="resource-chip hotline" href="tel:1925">📞 安心專線 1925（24H免費）</a>
+      <a class="resource-chip hotline" href="tel:1955">📞 保護專線 1955（家暴通報）</a>
+      <a class="resource-chip gov" href="https://www.sfaa.gov.tw/" target="_blank" rel="noopener">🏛️ 社家署喘息服務申請</a>
+      <a class="resource-chip gov" href="https://www.hpa.gov.tw/Pages/List.aspx?nodeid=189" target="_blank" rel="noopener">🏥 產後憂鬱篩檢資源</a>
+      <a class="resource-chip community" href="https://www.dcard.tw/f/mama" target="_blank" rel="noopener">💬 Dcard 媽媽板</a>
+      <a class="resource-chip community" href="https://www.ptt.cc/bbs/BabyMother/index.html" target="_blank" rel="noopener">💬 PTT BabyMother 板</a>
+    </div>
+
+    <!-- 原有4張卡片 -->
     <div class="mama-grid">
       <div class="mama-card">
         <span class="mama-icon">🛡️</span><h3>回覆話術參考</h3>
         <p>遇到不友善的評論，準備好的話讓你有底氣，不慌不忙 💪</p>
         <div class="script-box"><div class="script-situation">「你怎麼還在餵母乳？」</div><div class="script-reply">「謝謝關心，這是我和醫生討論後的選擇 😊」</div></div>
         <div class="script-box"><div class="script-situation">「小孩穿太少了！」</div><div class="script-reply">「我有注意寶寶的體溫，謝謝提醒！」</div></div>
+        <div class="script-box"><div class="script-situation">「你怎麼不自己帶？」</div><div class="script-reply">「我們有安排適合自己的方式，謝謝關心！」</div></div>
         <div class="script-box"><div class="script-situation">網路不友善留言</div><div class="script-reply">直接封鎖，截圖留存，必要時檢舉 🐻 你的心理健康更重要！</div></div>
       </div>
       <div class="mama-card">
         <span class="mama-icon">🧠</span><h3>情緒支持資源</h3>
         <p>育兒路上難免有低潮，產後情緒波動是正常的，不是你的錯 💕</p>
-        <div class="script-box"><div class="script-situation">產後情緒低落？</div><div class="script-reply">衛福部安心專線：📞 1925（24小時免費）</div></div>
+        <div class="script-box"><div class="script-situation">產後情緒低落？</div><div class="script-reply">衛福部安心專線：📞 1925（24小時免費）產後憂鬱不是你的錯</div></div>
         <div class="script-box"><div class="script-situation">需要喘息空間？</div><div class="script-reply">各縣市家庭教育中心提供免費諮詢，也可申請喘息服務 🌸</div></div>
+        <div class="script-box"><div class="script-situation">睡眠嚴重不足？</div><div class="script-reply">和伴侶排班輪替，或請長輩協助 2 小時，先睡一覺再說 🌙</div></div>
         <div class="script-box"><div class="script-situation">今日溫馨提醒 🐻</div><div class="script-reply">今天當個「夠好的媽媽」就好，你的愛寶寶都感受到了 💕</div></div>
       </div>
       <div class="mama-card">
         <span class="mama-icon">📚</span><h3>設定界限指南</h3>
         <p>你有權利為自己和寶寶設定界限，這是自我保護，不是自私 🌟</p>
         <div class="script-box"><div class="script-situation">對長輩說不</div><div class="script-reply">「謝謝你的建議，我們有參考醫生的說法，放心！」</div></div>
+        <div class="script-box"><div class="script-situation">拒絕探訪要求</div><div class="script-reply">「寶寶這週免疫力比較低，下個月再約吧！謝謝理解 🙏」</div></div>
         <div class="script-box"><div class="script-situation">網路霸凌應對</div><div class="script-reply">截圖存證 → 封鎖 → 向平台檢舉 💪 你值得被好好對待！</div></div>
       </div>
       <div class="mama-card">
         <span class="mama-icon">🤝</span><h3>媽媽互助提醒</h3>
         <p>你不是一個人在育兒，每個媽媽都在摸索 🐻 一起加油！</p>
         <div class="script-box"><div class="script-situation">找到同路人</div><div class="script-reply">Dcard 媽媽板、PTT BabyMother 版——有相同處境的媽媽都在 🌸</div></div>
+        <div class="script-box"><div class="script-situation">給自己的自我照顧清單</div><div class="script-reply">☑ 今天喝夠水了嗎？☑ 吃飯了嗎？☑ 出門曬 10 分鐘太陽了嗎？</div></div>
         <div class="script-box"><div class="script-situation">當媽媽也是一個人</div><div class="script-reply">每天給自己 10 分鐘。一杯咖啡、一段音樂 ☕ 你值得被愛！</div></div>
       </div>
     </div>
+
+    <!-- 親子天下文章連結 -->
+    <div class="article-section-title">📖 育兒知識專區 <span>親子天下精選</span></div>
+    <p class="article-section-desc">台灣最權威的親子教育媒體，每篇都有兒科醫師或專業老師把關，讓你帶著知識育兒更有自信 🌟</p>
+
+    <div class="article-section-title" style="font-size:16px;margin:0 0 12px">🍼 新生兒與寶寶照護</div>
+    <div class="article-grid">
+      <div class="article-card">
+        <div class="article-tag">哺乳</div>
+        <div class="article-card-title">母乳哺育完整指南</div>
+        <div class="article-card-desc">從開奶、追奶到斷奶，解答新手媽媽最多的哺乳困惑，兒科醫師親自把關</div>
+        <a class="btn-article" href="https://www.parenting.com.tw/search?q=母乳" target="_blank" rel="noopener">→ 閱讀相關文章</a>
+      </div>
+      <div class="article-card">
+        <div class="article-tag">睡眠</div>
+        <div class="article-card-title">嬰兒睡眠訓練方法比較</div>
+        <div class="article-card-desc">費伯法、哭泣免疫法、親密育兒……各種流派優缺點一次整理，幫你找到最適合的方式</div>
+        <a class="btn-article" href="https://www.parenting.com.tw/search?q=嬰兒睡眠訓練" target="_blank" rel="noopener">→ 閱讀相關文章</a>
+      </div>
+      <div class="article-card">
+        <div class="article-tag">副食品</div>
+        <div class="article-card-title">副食品添加時機與順序</div>
+        <div class="article-card-desc">4個月還是6個月開始？泥狀還是手指食物？最新WHO與台灣兒科醫學會建議整理</div>
+        <a class="btn-article" href="https://www.parenting.com.tw/search?q=副食品" target="_blank" rel="noopener">→ 閱讀相關文章</a>
+      </div>
+      <div class="article-card">
+        <div class="article-tag">發展</div>
+        <div class="article-card-title">0-12個月寶寶發展里程碑</div>
+        <div class="article-card-desc">每個月寶寶會哪些新技能？何時該帶去評估？清楚的發展指引讓你觀察更有方向</div>
+        <a class="btn-article" href="https://www.parenting.com.tw/search?q=嬰兒發展里程碑" target="_blank" rel="noopener">→ 閱讀相關文章</a>
+      </div>
+    </div>
+
+    <div class="article-section-title" style="font-size:16px;margin:0 0 12px">🌱 教養與親子關係</div>
+    <div class="article-grid">
+      <div class="article-card">
+        <div class="article-tag">教養</div>
+        <div class="article-card-title">正向教養：不打不罵的管教法</div>
+        <div class="article-card-desc">情緒爆炸怎麼辦？如何設界限又不傷感情？正向教養實戰技巧，讓親子衝突變成連結</div>
+        <a class="btn-article" href="https://www.parenting.com.tw/search?q=正向教養" target="_blank" rel="noopener">→ 閱讀相關文章</a>
+      </div>
+      <div class="article-card">
+        <div class="article-tag">語言</div>
+        <div class="article-card-title">寶寶語言發展與親子共讀</div>
+        <div class="article-card-desc">幾個月開始說話？怎麼唸繪本才有效？語言治療師教你日常互動就能促進寶寶語言爆發</div>
+        <a class="btn-article" href="https://www.parenting.com.tw/search?q=寶寶語言發展" target="_blank" rel="noopener">→ 閱讀相關文章</a>
+      </div>
+      <div class="article-card">
+        <div class="article-tag">情緒</div>
+        <div class="article-card-title">幼兒情緒發展與處理技巧</div>
+        <div class="article-card-desc">為什麼1歲突然變得愛哭難搞？如何回應寶寶情緒才不會「寵壞」？心理師詳解</div>
+        <a class="btn-article" href="https://www.parenting.com.tw/search?q=幼兒情緒" target="_blank" rel="noopener">→ 閱讀相關文章</a>
+      </div>
+      <div class="article-card">
+        <div class="article-tag">3C管理</div>
+        <div class="article-card-title">幼兒使用3C的正確方式</div>
+        <div class="article-card-desc">幾歲可以開始接觸？每天多久合適？兒童發展專家給的科學建議，讓你不再糾結</div>
+        <a class="btn-article" href="https://www.parenting.com.tw/search?q=幼兒+3C+使用" target="_blank" rel="noopener">→ 閱讀相關文章</a>
+      </div>
+    </div>
+
+    <div class="article-section-title" style="font-size:16px;margin:0 0 12px">💆 媽媽自我照顧</div>
+    <div class="article-grid">
+      <div class="article-card">
+        <div class="article-tag">產後恢復</div>
+        <div class="article-card-title">產後身心恢復全攻略</div>
+        <div class="article-card-desc">骨盆底肌修復、產後飲食、惡露照護……婦產科醫師整理你坐月子期間必知的知識</div>
+        <a class="btn-article" href="https://www.parenting.com.tw/search?q=產後恢復" target="_blank" rel="noopener">→ 閱讀相關文章</a>
+      </div>
+      <div class="article-card">
+        <div class="article-tag">產後憂鬱</div>
+        <div class="article-card-title">產後憂鬱症：認識、預防與求助</div>
+        <div class="article-card-desc">不是你太脆弱，是荷爾蒙和壓力真的很重。精神科醫師說明症狀識別與治療選項</div>
+        <a class="btn-article" href="https://www.parenting.com.tw/search?q=產後憂鬱" target="_blank" rel="noopener">→ 閱讀相關文章</a>
+      </div>
+      <div class="article-card">
+        <div class="article-tag">夫妻關係</div>
+        <div class="article-card-title">有了孩子後如何維繫夫妻關係</div>
+        <div class="article-card-desc">孩子出生後感情變淡怎麼辦？如何分工不吵架？婚姻諮商師的實用建議</div>
+        <a class="btn-article" href="https://www.parenting.com.tw/search?q=夫妻關係+育兒" target="_blank" rel="noopener">→ 閱讀相關文章</a>
+      </div>
+      <div class="article-card">
+        <div class="article-tag">職場媽媽</div>
+        <div class="article-card-title">職場媽媽重返職場指南</div>
+        <div class="article-card-desc">育嬰假結束後如何銜接？如何安頓孩子照顧又兼顧職涯？過來人經驗與法律資源整理</div>
+        <a class="btn-article" href="https://www.parenting.com.tw/search?q=職場媽媽+育嬰假" target="_blank" rel="noopener">→ 閱讀相關文章</a>
+      </div>
+    </div>
+
+    <div class="article-section-title" style="font-size:16px;margin:0 0 12px">🏥 健康與醫療</div>
+    <div class="article-grid">
+      <div class="article-card">
+        <div class="article-tag">疫苗</div>
+        <div class="article-card-title">寶寶疫苗接種時程完整表</div>
+        <div class="article-card-desc">公費自費疫苗一次搞懂，何時打、為何打、接種後注意事項，兒科醫師親整理</div>
+        <a class="btn-article" href="https://www.parenting.com.tw/search?q=嬰兒疫苗" target="_blank" rel="noopener">→ 閱讀相關文章</a>
+      </div>
+      <div class="article-card">
+        <div class="article-tag">發燒處理</div>
+        <div class="article-card-title">幼兒發燒：何時看醫生？</div>
+        <div class="article-card-desc">幾度算發燒？退燒藥怎麼用？什麼情況要緊急就醫？新手爸媽必備的發燒應對指南</div>
+        <a class="btn-article" href="https://www.parenting.com.tw/search?q=幼兒發燒" target="_blank" rel="noopener">→ 閱讀相關文章</a>
+      </div>
+      <div class="article-card">
+        <div class="article-tag">腸胃</div>
+        <div class="article-card-title">嬰兒腸絞痛與腹瀉處理</div>
+        <div class="article-card-desc">寶寶大哭不知道為什麼？便便顏色對不對？腸胃科醫師解惑新手媽媽最多的腸胃疑問</div>
+        <a class="btn-article" href="https://www.parenting.com.tw/search?q=嬰兒腸胃" target="_blank" rel="noopener">→ 閱讀相關文章</a>
+      </div>
+      <div class="article-card">
+        <div class="article-tag">過敏</div>
+        <div class="article-card-title">嬰幼兒過敏預防與照護</div>
+        <div class="article-card-desc">異位性皮膚炎、食物過敏怎麼處理？過敏科醫師教你從飲食到環境全面預防</div>
+        <a class="btn-article" href="https://www.parenting.com.tw/search?q=嬰兒過敏" target="_blank" rel="noopener">→ 閱讀相關文章</a>
+      </div>
+    </div>
+
   </div>
 </div>
 
