@@ -1758,7 +1758,7 @@ async function loadSecondhand(){
       <div class="sh-desc">${item.description||'無說明'}</div>
       <div class="sh-footer">
         <div class="sh-stage">📅 ${item.age_stage||'通用'}</div>
-        <button class="btn-ask-seller" onclick="openFraudGuard(${JSON.stringify(item.contact||'請私訊')})">🔐 詢問賣家</button>
+        <button class="btn-ask-seller" data-contact="${(item.contact||'請私訊').replace(/"/g,'&quot;')}" onclick="openFraudGuard(this.dataset.contact)">🔐 詢問賣家</button>
       </div>
     </div>`).join('');
 }
