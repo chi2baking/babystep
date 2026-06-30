@@ -1738,7 +1738,6 @@ async function loadSecondhand(){
   const el=document.getElementById('secondhand-list');
   el.innerHTML='<div class="loading"><div class="spinner"></div><p>載入中... 🐻</p></div>';
   const{data,error}=await db.from('secondhand').select('*').order('created_at',{ascending:false});
-  if(error){el.innerHTML='<div class="empty"><div class="empty-icon">😢</div><p>載入失敗，請重新整理</p></div>';return;}
   const DEMO_SH=[
     {title:'chicco 嬰兒床 附床墊',description:'使用約1年，床板可調三段高度，附原廠床墊，九成新。',age_stage:'0-2歲',price:3500,condition:'良好',contact:'Line: mama_share01'},
     {title:'Aprica 輕量推車 STICK',description:'折疊超方便，坐墊可拆洗，適合6個月以上寶寶，附防塵袋。',age_stage:'6m-3歲',price:2800,condition:'良好',contact:'Email: aprica_mama@gmail.com'},
@@ -1746,7 +1745,7 @@ async function loadSecondhand(){
     {title:'Ergobaby 揹巾 Omni 360',description:'有腰凳支撐，四種揹法，布料透氣，近全新只用過5次。',age_stage:'新生兒-3歲',price:2500,condition:'新',contact:'Dcard私訊 @babymama2023'},
     {title:'IKEA Antilop 高腳椅',description:'餐盤、安全帶齊全，好洗易清潔，免費贈送不需要的朋友。',age_stage:'6m-3歲',price:0,condition:'良好',contact:'Line: ikea_free_chair'},
   ];
-  if(!data||!data.length)data=DEMO_SH;
+  if(error||!data||!data.length)data=DEMO_SH;
   const cL={'新':'全新未拆','良好':'近全新','普通':'有使用痕跡'};
   const cC={'新':'c-new','良好':'c-good','普通':'c-used'};
   el.innerHTML=data.map(item=>`
