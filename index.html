@@ -157,6 +157,51 @@
   .sh-footer{display:flex;justify-content:space-between;align-items:center;padding-top:14px;border-top:1.5px dashed var(--border);}
   .sh-stage{font-size:12px;font-weight:700;color:var(--soft);}
   .sh-contact{font-size:12px;font-weight:800;color:var(--purple);}
+  .btn-ask-seller{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:30px;font-size:13px;font-weight:800;cursor:pointer;border:none;background:var(--purple);color:white;transition:all .2s;}
+  .btn-ask-seller:hover{opacity:.85;transform:scale(1.03);}
+
+  /* 防詐 modal */
+  .fraud-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:2000;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s;}
+  .fraud-overlay.open{opacity:1;pointer-events:all;}
+  .fraud-modal{background:white;border-radius:28px;padding:0;max-width:520px;width:100%;box-shadow:0 24px 80px rgba(0,0,0,.25);overflow:hidden;transform:translateY(20px);transition:transform .25s;}
+  .fraud-overlay.open .fraud-modal{transform:translateY(0);}
+  .fraud-modal-head{background:linear-gradient(135deg,#6c3fc5,#9b59b6);padding:28px 28px 20px;color:white;}
+  .fraud-modal-title{font-size:20px;font-weight:900;font-family:'Playfair Display',serif;margin-bottom:6px;}
+  .fraud-modal-sub{font-size:13px;font-weight:600;opacity:.9;}
+  .fraud-steps-bar{display:flex;align-items:center;margin-top:20px;gap:0;}
+  .fstep{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.3);color:white;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .3s;}
+  .fstep.active{background:white;color:var(--purple);}
+  .fstep.done{background:rgba(255,255,255,.6);color:var(--purple);}
+  .fstep-line{flex:1;height:2px;background:rgba(255,255,255,.3);}
+  .fstep-line.done{background:rgba(255,255,255,.7);}
+  .fraud-body{padding:28px;}
+  .fraud-step-label{font-size:11px;font-weight:800;color:var(--purple);letter-spacing:.08em;margin-bottom:8px;}
+  .fraud-step-title{font-size:17px;font-weight:900;color:var(--dark);margin-bottom:16px;font-family:'Playfair Display',serif;}
+  .fraud-rules{display:flex;flex-direction:column;gap:10px;margin-bottom:24px;}
+  .fraud-rule{display:flex;align-items:flex-start;gap:12px;padding:14px;background:#f8f5ff;border:1.5px solid #d8c8f0;border-radius:14px;cursor:pointer;transition:all .2s;}
+  .fraud-rule.checked{background:#edf9ee;border-color:#6bcf7f;}
+  .fraud-rule-box{width:20px;height:20px;border-radius:6px;border:2px solid #c0a8e0;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;transition:all .2s;margin-top:1px;}
+  .fraud-rule.checked .fraud-rule-box{background:#27ae60;border-color:#27ae60;color:white;}
+  .fraud-rule-text{font-size:13px;font-weight:700;color:var(--dark);line-height:1.5;}
+  .fraud-quiz-options{display:flex;flex-direction:column;gap:10px;margin-bottom:24px;}
+  .fraud-option{padding:14px 18px;border:1.5px solid var(--border);border-radius:14px;cursor:pointer;font-size:13px;font-weight:700;color:var(--dark);transition:all .2s;}
+  .fraud-option:hover{border-color:var(--purple-mid);background:var(--purple-pale);}
+  .fraud-option.correct{background:#edf9ee;border-color:#6bcf7f;color:#1a7a30;}
+  .fraud-option.wrong{background:#fdf0f0;border-color:#e74c3c;color:#c0392b;}
+  .fraud-verify-input{width:100%;padding:14px 18px;border:2px solid var(--purple-mid);border-radius:14px;font-size:18px;font-weight:800;text-align:center;font-family:'Nunito',sans-serif;margin-bottom:16px;outline:none;box-sizing:border-box;}
+  .fraud-verify-input:focus{border-color:var(--purple);}
+  .fraud-reveal-box{background:linear-gradient(135deg,#f0e8ff,#e8f4ff);border:2px solid var(--purple-mid);border-radius:18px;padding:24px;text-align:center;margin-bottom:20px;display:none;}
+  .fraud-reveal-box.show{display:block;}
+  .fraud-reveal-label{font-size:12px;font-weight:800;color:var(--purple);margin-bottom:8px;letter-spacing:.05em;}
+  .fraud-reveal-contact{font-size:22px;font-weight:900;color:var(--dark);letter-spacing:.03em;}
+  .fraud-btn{width:100%;padding:14px;border-radius:30px;font-size:15px;font-weight:800;cursor:pointer;border:none;background:var(--purple);color:white;font-family:'Nunito',sans-serif;transition:all .2s;}
+  .fraud-btn:hover{opacity:.85;}
+  .fraud-btn:disabled{opacity:.4;cursor:default;}
+  .fraud-close{position:absolute;top:16px;right:20px;background:none;border:none;color:rgba(255,255,255,.8);font-size:22px;cursor:pointer;line-height:1;}
+  .fraud-modal-head{position:relative;}
+  .fraud-msg{font-size:13px;font-weight:700;text-align:center;min-height:18px;margin-bottom:12px;}
+  .fraud-msg.err{color:#e74c3c;}
+  .fraud-msg.ok{color:#27ae60;}
 
   /* FORM */
   .form-wrap{max-width:620px;margin:0 auto 48px;}
@@ -1707,7 +1752,7 @@ async function loadSecondhand(){
       <div class="sh-desc">${item.description||'無說明'}</div>
       <div class="sh-footer">
         <div class="sh-stage">📅 ${item.age_stage||'通用'}</div>
-        <div class="sh-contact">📩 ${item.contact||'請私訊'}</div>
+        <button class="btn-ask-seller" onclick="openFraudGuard(${JSON.stringify(item.contact||'請私訊')})">🔐 詢問賣家</button>
       </div>
     </div>`).join('');
 }
@@ -1731,6 +1776,113 @@ async function postSecondhand(){
 }
 
 loadHomeProducts();
+
+/* ===== 防詐騙 Modal ===== */
+const FRAUD_QUIZ=[
+  {q:'你在網路上購物，對方要求你先匯款才能出貨，你應該？',opts:['立刻匯款，怕被搶先','核實身份後再考慮','完全不考慮，轉帳前務必驗證','詢問朋友意見後直接匯'],ans:2},
+  {q:'賣家突然要求改用其他平台私下交易，理由是「費用較低」，你應該？',opts:['同意，省錢很重要','拒絕，留在有保障的平台交易','詢問折扣金額再決定','給私人帳號匯款'],ans:1},
+  {q:'以下哪個是常見的詐騙手法？',opts:['提供詳細商品照片','要求先付全額訂金才公布地址','約在公共場所驗貨','提供合理聯絡資訊'],ans:1},
+  {q:'你想驗證賣家是否可信，最好的方式是？',opts:['只看照片就決定','查看評價、要求視訊看貨並約公共場所','直接匯款測試','不需要驗證'],ans:1},
+  {q:'收到商品發現與描述不符，應該？',opts:['默默接受，不想麻煩','立刻在平台上申訴並保留證據','私下與賣家協商，不留紀錄','放棄追究'],ans:1},
+];
+let _fc='';let _fq=null;let _fMath=[0,0];let _fStep=1;
+
+function openFraudGuard(contact){
+  _fc=contact;_fStep=1;
+  _fq=FRAUD_QUIZ[Math.floor(Math.random()*FRAUD_QUIZ.length)];
+  _fMath=[Math.floor(Math.random()*9)+1,Math.floor(Math.random()*9)+1];
+  renderFraudStep(1);
+  document.getElementById('fraud-overlay').classList.add('open');
+}
+function closeFraudGuard(){document.getElementById('fraud-overlay').classList.remove('open');}
+
+function renderFraudStep(step){
+  _fStep=step;
+  const bar=document.getElementById('fraud-bar');
+  bar.innerHTML=[1,2,3].map(i=>`<div class="fstep ${i<step?'done':i===step?'active':''}">${i<step?'✓':i}</div>${i<3?`<div class="fstep-line ${i<step?'done':''}"></div>`:''}`).join('');
+
+  const body=document.getElementById('fraud-body');
+  if(step===1){
+    body.innerHTML=`
+      <div class="fraud-step-label">步驟 1 / 3 — 安全守則確認</div>
+      <div class="fraud-step-title">請閱讀並勾選以下安全守則</div>
+      <div class="fraud-rules" id="fraud-rules">
+        <div class="fraud-rule" id="fr0" onclick="toggleFRule(0)"><div class="fraud-rule-box" id="fb0"></div><div class="fraud-rule-text">💰 我不會在未見到商品前先全額匯款</div></div>
+        <div class="fraud-rule" id="fr1" onclick="toggleFRule(1)"><div class="fraud-rule-box" id="fb1"></div><div class="fraud-rule-text">📍 我會約在便利商店、捷運站等公共場所驗貨交易</div></div>
+        <div class="fraud-rule" id="fr2" onclick="toggleFRule(2)"><div class="fraud-rule-box" id="fb2"></div><div class="fraud-rule-text">📱 我了解若感到可疑可撥打 165 反詐騙專線查詢</div></div>
+      </div>
+      <div class="fraud-msg err" id="fraud-msg1"></div>
+      <button class="fraud-btn" onclick="fraudNext1()">下一步 →</button>`;
+  } else if(step===2){
+    body.innerHTML=`
+      <div class="fraud-step-label">步驟 2 / 3 — 防詐知識測驗</div>
+      <div class="fraud-step-title">${_fq.q}</div>
+      <div class="fraud-quiz-options" id="fraud-opts">
+        ${_fq.opts.map((o,i)=>`<div class="fraud-option" id="fo${i}" onclick="fraudPickOpt(${i})">${String.fromCharCode(65+i)}. ${o}</div>`).join('')}
+      </div>
+      <div class="fraud-msg" id="fraud-msg2"></div>
+      <button class="fraud-btn" id="fraud-btn2" onclick="fraudNext2()" disabled>下一步 →</button>`;
+    window._fPick=-1;
+  } else if(step===3){
+    body.innerHTML=`
+      <div class="fraud-step-label">步驟 3 / 3 — 快速驗證</div>
+      <div class="fraud-step-title">請計算：${_fMath[0]} + ${_fMath[1]} = ？</div>
+      <input class="fraud-verify-input" id="fraud-math-input" type="number" placeholder="輸入答案" oninput="document.getElementById('fraud-msg3').textContent=''">
+      <div class="fraud-msg" id="fraud-msg3"></div>
+      <div class="fraud-reveal-box" id="fraud-reveal">
+        <div class="fraud-reveal-label">🎉 驗證通過！賣家聯絡方式</div>
+        <div class="fraud-reveal-contact" id="fraud-reveal-text"></div>
+      </div>
+      <button class="fraud-btn" id="fraud-btn3" onclick="fraudNext3()">取得聯絡方式</button>`;
+  }
+}
+
+function toggleFRule(i){
+  const r=document.getElementById('fr'+i);const b=document.getElementById('fb'+i);
+  const on=r.classList.toggle('checked');
+  b.textContent=on?'✓':'';
+}
+function fraudNext1(){
+  const checked=[0,1,2].filter(i=>document.getElementById('fr'+i).classList.contains('checked'));
+  if(checked.length<3){document.getElementById('fraud-msg1').textContent='⚠️ 請勾選全部三項守則';return;}
+  renderFraudStep(2);
+}
+function fraudPickOpt(i){
+  document.querySelectorAll('.fraud-option').forEach(el=>el.classList.remove('correct','wrong'));
+  const isRight=i===_fq.ans;
+  document.getElementById('fo'+i).classList.add(isRight?'correct':'wrong');
+  const msg=document.getElementById('fraud-msg2');
+  if(isRight){msg.className='fraud-msg ok';msg.textContent='✅ 正確！';}
+  else{msg.className='fraud-msg err';msg.textContent='❌ 請再想想，選擇正確答案後繼續。';return;}
+  document.getElementById('fraud-btn2').disabled=false;
+  window._fPick=i;
+}
+function fraudNext2(){if(window._fPick===_fq.ans)renderFraudStep(3);}
+function fraudNext3(){
+  const val=parseInt(document.getElementById('fraud-math-input').value);
+  const ans=_fMath[0]+_fMath[1];
+  if(isNaN(val)||val!==ans){
+    const m=document.getElementById('fraud-msg3');m.className='fraud-msg err';m.textContent='❌ 答案不對，再試一次';return;
+  }
+  document.getElementById('fraud-reveal-text').textContent=_fc;
+  document.getElementById('fraud-reveal').classList.add('show');
+  const btn=document.getElementById('fraud-btn3');btn.textContent='✓ 完成';btn.disabled=true;
+}
+
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.getElementById('fraud-overlay').classList.contains('open'))closeFraudGuard();});
 </script>
+
+<!-- 防詐騙 Modal -->
+<div class="fraud-overlay" id="fraud-overlay" onclick="if(event.target===this)closeFraudGuard()">
+  <div class="fraud-modal">
+    <div class="fraud-modal-head">
+      <button class="fraud-close" onclick="closeFraudGuard()">✕</button>
+      <div class="fraud-modal-title">🛡️ 防詐騙安全驗證</div>
+      <div class="fraud-modal-sub">完成 3 個步驟後即可取得賣家聯絡方式</div>
+      <div class="fraud-steps-bar" id="fraud-bar"></div>
+    </div>
+    <div class="fraud-body" id="fraud-body"></div>
+  </div>
+</div>
 </body>
 </html>
