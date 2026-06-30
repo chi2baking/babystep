@@ -1737,7 +1737,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModalBtn();});
 async function loadSecondhand(){
   const el=document.getElementById('secondhand-list');
   el.innerHTML='<div class="loading"><div class="spinner"></div><p>載入中... 🐻</p></div>';
-  const{data,error}=await db.from('secondhand').select('*').order('created_at',{ascending:false});
+  let{data,error}=await db.from('secondhand').select('*').order('created_at',{ascending:false});
   const DEMO_SH=[
     {title:'chicco 嬰兒床 附床墊',description:'使用約1年，床板可調三段高度，附原廠床墊，九成新。',age_stage:'0-2歲',price:3500,condition:'良好',contact:'Line: mama_share01'},
     {title:'Aprica 輕量推車 STICK',description:'折疊超方便，坐墊可拆洗，適合6個月以上寶寶，附防塵袋。',age_stage:'6m-3歲',price:2800,condition:'良好',contact:'Email: aprica_mama@gmail.com'},
